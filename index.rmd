@@ -1,0 +1,13 @@
+--- 
+title: "A structured Bayesian workflow for program evaluation and management consulting"
+author: "Trent Henderson"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+github-repo: henderson-trent/bayes-for-consulting
+output:
+  bookdown::gitbook: default
+  #bookdown::pdf_book: default
+---
+
+Welcome!
