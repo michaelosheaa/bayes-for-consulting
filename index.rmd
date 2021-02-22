@@ -18,4 +18,6 @@ The initial title was conceived because I studied psychology at the Honours and 
 
 Thus, this book was born to help fasttrack others along a similar journey. This book became a product not so much out of negativity anymore, but more out of hope. Hope that future students will engage with technical details earlier. Hope that lecturers and tutors can steer classes safely into the details, building intuition first and precision through mathematics after. Hope that research supervisors will not just let their students assume that everything is normally distributed when it is not and simply write this as a limitation of their analysis in the the dissertation's discussion section.
 
+As a final note, if you have any questions, queries, or spot any errors, please don't hesitate to [email](trent.henderson1@outlook.com) me, [tweet](https://twitter.com/trentlikesstats) me, or submit an issue on the [GitHub repository](https://github.com/hendersontrent/bayes-for-consulting) for the book.
+
 With that off my chest, let's go!
