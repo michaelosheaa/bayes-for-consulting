@@ -1,4 +1,4 @@
-# Chapter 1: Thinking generatively
+# Thinking generatively
 
 The normal distribution is the only type of distribution I learnt in my formal psychology education. Everything had to be normal - from distributions of quantitative variable values to all the assumptions made in statistical tests. There was no indication at all that other probability distributions existed, let alone their immense utility and appropriateness in many circumstances. Further, emphasis was very heavy on the *summative* parts of analysis, that is, that certain aspects of our model diagnostics must be normally distributed. But no focus was given to the important concept of the **underlying process** - the statistical process which generated the data we have seen. Indeed, this means many models in psychological research are purely a means to an end and based on the limited tools that are taught. I would not be surprised to hear sentiment from students such as 'I need to remove univariate outliers because they violate normality'.
 
