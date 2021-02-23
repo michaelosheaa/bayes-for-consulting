@@ -2,7 +2,7 @@
 title: An introduction to Bayes, generative thinking, and a structured Bayesian workflow
   for management consulting
 author: "Trent Henderson"
-date: "`r Sys.Date()`"
+date: "2021-02-23"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -23,6 +23,4 @@ As a final note, if you have any questions, queries, or spot any errors, please 
 
 With that off my chest, let's go!
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+

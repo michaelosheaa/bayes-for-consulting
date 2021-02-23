@@ -1,0 +1,94 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting},
+  pdfauthor={Trent Henderson},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\title{An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting}
+\author{Trent Henderson}
+\date{2021-02-23}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+Welcome! Thank you for checking out \emph{An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting} or as I like to call it - \emph{Trent's ramblings on things he has observed in his not-many-years as a professional data scientist}. Before we get into the exciting details, I just wanted to give you a little bit of context about the book and about me, as my goal is to have the contents resonate with everyone, but especially those working in a (management) consulting or program evaluation setting.
+
+The book initially started out being called \emph{Statistical shit they don't teach you in psychology (but probably should)}, but I thought this to be a bit too clickbait-y for my liking. Plus, the content began to expand beyond just the topics I believe are missing in university education into more applied problems and situations I encountered at work. This led me to reconsider the framing and purpose of the entire thing.
+
+The initial title was conceived because I studied psychology at the Honours and Masters level. While these studies inevitably contributed to me being in the position I am in today (PhD student in complex systems statistics, data scientist at the management consulting firm Nous Group, and founder of Orbisant Analytics), I harbour a large amount of negative feelings towards what I studied. If I could do it all over again, I would study statistics and computer science or statistics and software engineering. Contrary to many of my peers, I loved the many research methodology and statistics courses I did in psychology, but it wasn't until I started learning programming and reading books in other fields (statistics, econometrics, pure mathematics) that I realised all of the essential mathematical details were glossed over and passed off as `beyond the scope of the course'. This meant I had to self-teach myself all of the gory details if I wanted to build more detailed, appropriate, and complex models. I became known amongst my peers as the person who would go home after class and code all night, code all weekend, and read mathematics and statistics books and tutorials in my spare time. While this helped me bridge the gap I missed in my formal education to get me to where I am today, the process definitely made me realise how much of it could be taught at the undergraduate level, just like students in other fields get taught.
+
+Thus, this book was born to help fasttrack others along a similar journey. This book became a product not so much out of negativity anymore, but more out of hope. Hope that future students will engage with technical details earlier. Hope that lecturers and tutors can steer classes safely into the details, building intuition first and precision through mathematics after. Hope that research supervisors will not just let their students assume that everything is normally distributed when it is not and simply write this as a limitation of their analysis in the the dissertation's discussion section.
+
+As a final note, if you have any questions, queries, or spot any errors, please don't hesitate to \href{trent.henderson1@outlook.com}{email} me, \href{https://twitter.com/trentlikesstats}{tweet} me, or submit an issue on the \href{https://github.com/hendersontrent/bayes-for-consulting}{GitHub repository} for the book. The book is currently a living document - I will keep adding sections to it as I write them.
+
+With that off my chest, let's go!
+
+\end{document}

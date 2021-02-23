@@ -52,7 +52,8 @@ We often cannot sample an entire population or know the *true* actual population
 
 Let's say previous research suggests that the true proportion is somewhere around 0.7, but we aren't entirely certain. We can use a probability density function to model this best guess with some relative uncertainty around it. In practice, this means the areas of highest probability density (i.e. occurring) will be 0.7 and the immediate proportions around it, while proportions further away from 0.7 will have lower probability density. When your outcome measure of interest is a proportion, a [`beta distribution`](https://en.wikipedia.org/wiki/Beta_distribution) is the distribution you should use to model this. We'll also take this opportunity to load all the packages we need for the entire book.
 
-```{r, message = FALSE, warning = FALSE}
+
+```r
 library(dplyr)
 library(tibble)
 library(magrittr)
@@ -95,6 +96,8 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
+<img src="01-thinking_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
 The y values in this graph represent [probability densities](https://en.wikipedia.org/wiki/Probability_density_function). If we take any area between two x values on this graph, we then have the *probability* that a value lies within. Probability densities by themselves are not probabilities, but they help us understand where most of the data points lie in the underlying distribution (higher probability density = higher concentration of data points).
 
 I'll leave the true purpose of this initial prior understanding until after we discuss the more familiar *likelihood* - or as we now know it - the probability distribution that best describes the data we have seen based on an estimated mean and standard deviation.
@@ -103,7 +106,8 @@ I'll leave the true purpose of this initial prior understanding until after we d
 
 Now let's say we sampled 10 adults students and observed whether they were satisfied with their job or not and 5 said they were. We can then calculate the probability of this occurring.
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 # The observed data
 
 lh <- data.frame(x = 0:10) %>%
@@ -126,11 +130,14 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
+<img src="01-thinking_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
 ## Combining our best guess and the observed random sample of data for an informed estimate of the population process
 
 Consistent with [probability theory](https://en.wikipedia.org/wiki/Probability_theory), we can multiple two probabilities (to account for both) to get their [joint probability](https://en.wikipedia.org/wiki/Joint_probability_distribution). This means we can multiply our prior by the likelihood to return something known as the [*posterior*](https://en.wikipedia.org/wiki/Posterior_probability).
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 # Multiply prior and likelihood to get the 'posterior'
 
 posterior <- data.frame(x = x,
@@ -154,9 +161,12 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
+<img src="01-thinking_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+
 As you can see, the posterior appears to resemble a sort of "trade-off" between our prior and the observed data. Building on this, so far we have looked at a sample of ten random adults. You might begin to wonder what the posterior distribution looks like if our sample size was larger but 50% still said they were satisfied with their job. Does our initial guess/intuition (the *prior*) become less important as we understand more of the actual population? Let's take a look - we are going to write a function that we can reuse that only takes a sample size as an input.
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 do_bayes <- function(n = 100){
   
   # Prior
@@ -208,12 +218,17 @@ p_100 <- do_bayes(n = 100)
 print(p_100)
 ```
 
+<img src="01-thinking_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
 As you can see, as sample size increases, the posterior distribution is driven more and more by the likelihood - meaning the prior (especially a 'wide' or *'uninformative'* prior) becomes increasingly less important. Moreover, if we specify a very narrow/specifc prior (commonly referred to as *'informative'*), this diminishing importance relative to the likelihood is not as strong as what we see here. In theory, when sample sizes are very large, the results produced by this line of thinking get closer and closer to those produced by the maximum-likelihood-driven analysis we are familiar with. More simply, as sample sizes increase, the posterior approximates the likelihood. Very interesting! Let's try `N = 1,000` just to really drive this point home:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 p_1000 <- do_bayes(n = 1000)
 print(p_1000)
 ```
+
+<img src="01-thinking_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 Evidently, at a sample size of `N = 1000` the likelihood and the standardised posterior basically fully overlap (which is why the likelihood visually appears mostly 'hidden'). The other important thing that might stand out to you at this point is the inclusion of something called the *Standardised Posterior* which is calculated as the unstandardised posterior probability densities divided by the sum of all the probability densities. This ensures our posterior probabilities are *actual* probabilities (meaning they sum to 1). Let's explore this in more detail.
 

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 A structured Bayesian workflow for program evaluation and management consulting | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</title>
+  <meta name="description" content="Chapter 4 A structured Bayesian workflow for program evaluation and management consulting | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 A structured Bayesian workflow for program evaluation and management consulting | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="hendersontrent/bayes-for-consulting" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 A structured Bayesian workflow for program evaluation and management consulting | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  
+  
+  
+
+<meta name="author" content="Trent Henderson" />
+
+
+<meta name="date" content="2021-02-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="thinking-generatively.html"><a href="thinking-generatively.html"><i class="fa fa-check"></i><b>2</b> Thinking generatively</a><ul>
+<li class="chapter" data-level="2.1" data-path="thinking-generatively.html"><a href="thinking-generatively.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="thinking-generatively.html"><a href="thinking-generatively.html#a-short-psychological-example-adult-satisfaction-with-their-job"><i class="fa fa-check"></i><b>2.2</b> A short psychological example: Adult satisfaction with their job</a></li>
+<li class="chapter" data-level="2.3" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-our-best-guess-at-the-process"><i class="fa fa-check"></i><b>2.3</b> Plotting our best guess at the process</a></li>
+<li class="chapter" data-level="2.4" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-a-random-sample-of-actual-data"><i class="fa fa-check"></i><b>2.4</b> Plotting a random sample of actual data</a></li>
+<li class="chapter" data-level="2.5" data-path="thinking-generatively.html"><a href="thinking-generatively.html#combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process"><i class="fa fa-check"></i><b>2.5</b> Combining our best guess and the observed random sample of data for an informed estimate of the population process</a></li>
+<li class="chapter" data-level="2.6" data-path="thinking-generatively.html"><a href="thinking-generatively.html#the-essence-of-bayesian-statistics"><i class="fa fa-check"></i><b>2.6</b> The essence of Bayesian statistics</a></li>
+<li class="chapter" data-level="2.7" data-path="thinking-generatively.html"><a href="thinking-generatively.html#taking-uncertainty-quantification-a-step-further"><i class="fa fa-check"></i><b>2.7</b> Taking uncertainty quantification a step further</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><i class="fa fa-check"></i><b>3</b> When the normal distribution is inappropriate (generalised linear models)</a><ul>
+<li class="chapter" data-level="3.1" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#poisson"><i class="fa fa-check"></i><b>3.1</b> Poisson</a></li>
+<li class="chapter" data-level="3.2" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#negative-binomial"><i class="fa fa-check"></i><b>3.2</b> Negative binomial</a></li>
+<li class="chapter" data-level="3.3" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#gamma"><i class="fa fa-check"></i><b>3.3</b> Gamma</a></li>
+<li class="chapter" data-level="3.4" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#beta"><i class="fa fa-check"></i><b>3.4</b> Beta</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><i class="fa fa-check"></i><b>4</b> A structured Bayesian workflow for program evaluation and management consulting</a><ul>
+<li class="chapter" data-level="4.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#use-qualitative-project-components-to-develop-priors"><i class="fa fa-check"></i><b>4.1</b> 1. Use qualitative project components to develop priors</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#how-to-elicit-priors-from-interviews-of-qualitative-reading"><i class="fa fa-check"></i><b>4.1.1</b> How to elicit priors from interviews of qualitative reading</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#specify-appropriately-uncertain-priors-for-your-context-despite-purported-stakeholder-certainty"><i class="fa fa-check"></i><b>4.2</b> 2. Specify appropriately uncertain priors for your context, despite purported stakeholder certainty</a></li>
+<li class="chapter" data-level="4.3" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#think-generatively-about-the-underlying-statistical-process-of-interest"><i class="fa fa-check"></i><b>4.3</b> 3. Think generatively about the underlying statistical process of interest</a></li>
+<li class="chapter" data-level="4.4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#test-competing-models-using-loo-cv-and-k-fold-cv"><i class="fa fa-check"></i><b>4.4</b> 4. Test competing models using LOO-CV and K-Fold-CV</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>4.4.1</b> Leave-one-out cross-validation</a></li>
+<li class="chapter" data-level="4.4.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>4.4.2</b> K-Fold cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#emphasise-credible-intervals-over-point-estimates-in-outputs-and-graphics"><i class="fa fa-check"></i><b>4.5</b> 5. Emphasise credible intervals over point estimates in outputs and graphics</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#credible-intervals-versus-confidence-intervals"><i class="fa fa-check"></i><b>4.5.1</b> Credible intervals versus confidence intervals</a></li>
+<li class="chapter" data-level="4.5.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#uncertainty-visualisation-example-1-bayesian-posterior-distributions"><i class="fa fa-check"></i><b>4.5.2</b> Uncertainty Visualisation Example 1: Bayesian posterior distributions</a></li>
+<li class="chapter" data-level="4.5.3" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#uncertainty-visualisation-example-2-frequentist-logistic-regression"><i class="fa fa-check"></i><b>4.5.3</b> Uncertainty Visualisation Example 2: Frequentist logistic regression</a></li>
+<li class="chapter" data-level="4.5.4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#other-useful-uncertainty-visualisation-resources"><i class="fa fa-check"></i><b>4.5.4</b> Other useful uncertainty visualisation resources</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/hendersontrent/bayes-for-consulting" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> A structured Bayesian workflow for program evaluation and management consulting</h1>
+<p>With a basic understanding of Bayesian statistics, its general workflow, and other statistical models and distributions, we can now take a look at the proposed structured workflow for Bayesian analysis on program evaluation and consulting projects. There are five key components to the process and each will be explored in turn below.</p>
+<ol style="list-style-type: decimal">
+<li>Use qualitative project components to develop priors</li>
+<li>Specify appropriately uncertain priors for your context, despite purported stakeholder certainty</li>
+<li>Think generatively about the underlying statistical process of interest</li>
+<li>Test competing models using LOO-CV and K-Fold-CV</li>
+<li>Emphasise credible intervals over point estimates in outputs and graphics</li>
+</ol>
+<div id="use-qualitative-project-components-to-develop-priors" class="section level2">
+<h2><span class="header-section-number">4.1</span> 1. Use qualitative project components to develop priors</h2>
+<p>Every consulting and program evaluation project I have worked on or heard of has involved some amount of stakeholder engagement. Whether it is something as minor as a project kickoff meeting, or more extensive consultation through interviews and workshops, there is always an aspect of talking to stakeholders. However, the typical way this process is used in consulting is to “supplement” quantitative analysis with the findings from qualitative engagement, or to “contextualise” quantitative outputs. This means the quantitative and qualitative are often discretised and only ever thought about in conjunction when it comes time to produce a deliverable or synthesise the entire project into a set of core findings. What can we do to make this relationship between quantitative and qualitative better and more informative? We can build in our understanding of the likely relationships (obtained through stakeholder engagement or other reading) into our statistical models as <em>priors</em>. Note that this is only possible within the Bayesian framework, not the traditional frequentist lens.</p>
+<div id="how-to-elicit-priors-from-interviews-of-qualitative-reading" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> How to elicit priors from interviews of qualitative reading</h3>
+<p>Th thought of trying to make a quantitative prior probability distribution from information that may not even remotely involve a number can be daunting. However, it primarily rests on the analyst’s ability reason and think abstractly about the information they are hearing or reading. As an example, let’s say a stakeholder said the following statement to your project team in an interview:</p>
+<p><strong>Stakeholder Statement 1: We have many different service providers who deliver the program. We believe, anecdotally, that quite a few perform much better than the others, while quite a few perform much worse.</strong></p>
+<p>There is not a single number contained in the statement. But does that mean we cannot use the information in a statistical model? Certainly not. There are some key parts of the statement that we can extract and examine further:</p>
+<ul>
+<li><em>Quite a few perform much better than the others, while quite a few perform much worse</em></li>
+<li><em>We have many different service providers who deliver the program</em></li>
+</ul>
+<div id="quote-1-quite-a-few-perform-much-better-than-the-others-while-quite-a-few-perform-much-worse" class="section level4">
+<h4><span class="header-section-number">4.1.1.1</span> Quote 1: Quite a few perform much better than the others, while quite a few perform much worse</h4>
+<p>Let’s take a look at the first quote. If we think distributionally, this information is very useful. It suggests that when we are thinking about effects, most are somewhere in the middle, but there are a decent amount toward the extremes. In a regression context, which is most often the case in consulting/program evaluation, these effects usually relate to regression coefficients (the value that relates a change in predictor value with change in output value). The initial reaction might be to use a normal distribution to specify a prior for the coefficient. This might be sufficient in a lot of cases, but if we really pay attention to the quote, it suggests the <em>tails</em> of the coefficient distribution are likely “fatter” (i.e. multiple providers) at each end. This is not really congruent with the idea of the normal distribution. What can we use instead?</p>
+<p>We could use two distributions that a very similar to the normal, but which have fatter tails. These are the <a href="https://en.wikipedia.org/wiki/Student%27s_t-distribution">Student’s t distribution</a> and the <a href="https://en.wikipedia.org/wiki/Cauchy_distribution">Cauchy distribution</a>. We can graph their probability densities against the normal to demonstrate this shift in the tail probabilities visually:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-1"></a><span class="co"># Simulate some random datapoints and calculate probability densities for each distribution type</span></span>
+<span id="cb10-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-2"></a></span>
+<span id="cb10-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-3"></a>tmp &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dt">length.out =</span> <span class="dv">100</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb10-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">normal =</span> <span class="kw">dnorm</span>(x, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>),</span>
+<span id="cb10-5"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-5"></a>         <span class="dt">student_5 =</span> <span class="kw">dt</span>(x, <span class="dt">df =</span> <span class="dv">5</span>),</span>
+<span id="cb10-6"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-6"></a>         <span class="dt">student_30 =</span> <span class="kw">dt</span>(x, <span class="dt">df =</span> <span class="dv">30</span>),</span>
+<span id="cb10-7"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-7"></a>         <span class="dt">cauchy =</span> <span class="kw">dcauchy</span>(x, <span class="dt">location =</span> <span class="dv">0</span>, <span class="dt">scale =</span> <span class="dv">1</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb10-8"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-8"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> dist_type, <span class="dt">value =</span> y, <span class="dv">2</span><span class="op">:</span><span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-9"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dist_type =</span> <span class="kw">case_when</span>(</span>
+<span id="cb10-10"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-10"></a>    dist_type <span class="op">==</span><span class="st"> &quot;normal&quot;</span>     <span class="op">~</span><span class="st"> &quot;Normal&quot;</span>,</span>
+<span id="cb10-11"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-11"></a>    dist_type <span class="op">==</span><span class="st"> &quot;student_5&quot;</span>  <span class="op">~</span><span class="st"> &quot;Student&#39;s t (df = 5)&quot;</span>,</span>
+<span id="cb10-12"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-12"></a>    dist_type <span class="op">==</span><span class="st"> &quot;student_30&quot;</span> <span class="op">~</span><span class="st"> &quot;Student&#39;s t (df = 30)&quot;</span>,</span>
+<span id="cb10-13"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-13"></a>    dist_type <span class="op">==</span><span class="st"> &quot;cauchy&quot;</span>     <span class="op">~</span><span class="st"> &quot;Cauchy&quot;</span>))</span>
+<span id="cb10-14"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-14"></a></span>
+<span id="cb10-15"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-15"></a><span class="co"># Plot it</span></span>
+<span id="cb10-16"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-16"></a></span>
+<span id="cb10-17"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-17"></a>tmp <span class="op">%&gt;%</span></span>
+<span id="cb10-18"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-18"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">colour =</span> dist_type)) <span class="op">+</span></span>
+<span id="cb10-19"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-19"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb10-20"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-20"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal vs Student&#39;s t vs Cauchy&quot;</span>,</span>
+<span id="cb10-21"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-21"></a>       <span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb10-22"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-22"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
+<span id="cb10-23"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-23"></a>       <span class="dt">colour =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb10-24"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-24"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb10-25"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-25"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#003f5c&quot;</span>, <span class="st">&quot;#7a5195&quot;</span>, <span class="st">&quot;#ef5675&quot;</span>, <span class="st">&quot;#ffa600&quot;</span>)) <span class="op">+</span></span>
+<span id="cb10-26"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb10-26"></a><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Evidently, either one of these new distributions might capture the subject matter expert’s information better than defaulting to a normal. We can see this as the tails of all the specified distributions sit “above” that of the normal’s - indicating higher probability density in the tails (i.e. the collection of extreme providers). In my code you can see I played around with the <a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)">degrees of freedom</a> parameter of the Student’s t distributions, but did not adjust any of the others too much. As the degrees of freedom approaches the sample size, the Student’s t distribution will approximate the normal distribution. I adjusted the <code>df</code> parameter mostly for visual illustration, but the process of choosing appropriate prior distribution parameters is a very important one. Let’s take a closer look.</p>
+<p>As we know, priors tend to be dominated by the likelihood when the sample size is large. We also know that this occurs especially when priors are vague (i.e. wide and “uninformative”). So if we set a normal prior with a wide standard deviation, it is likely that this will be dominated by the likelihood as it is not contributing much <em>specific</em> value compared to the (more likely) tighter likelihood distribution.</p>
+<p><strong>Prior Specification Key Takeaway: If you have a lot of uncertainty or want the actual data/likelihood to drive the posterior, specify a wide prior</strong></p>
+<p>As a useful one-stop-shop resource for choosing a distribution, the table below denotes a few high-level descriptions of values we may encounter in the real world and the probability distributions that might appropriately model it. This list is not exhaustive and should only serve as a starting point or primer to dig deeper. Further, there is no indication of appropriate distribution parameters as this is case-dependent.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-3">Table 4.1: </span>Known value types and corresponding potential distributions</caption>
+<colgroup>
+<col width="24%" />
+<col width="8%" />
+<col width="4%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="14%" />
+<col width="6%" />
+<col width="15%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Types of values</th>
+<th align="left">Bernoulli</th>
+<th align="left">Beta</th>
+<th align="left">Cauchy</th>
+<th align="left">Gamma</th>
+<th align="left">Normal</th>
+<th align="left">Ordered logistic</th>
+<th align="left">Poisson</th>
+<th align="left">Negative binomial</th>
+<th align="left">Student’s t</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Positive only</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+</tr>
+<tr class="even">
+<td align="left">Non-negative integer</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+</tr>
+<tr class="odd">
+<td align="left">Numeric between 0 and 1</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+</tr>
+<tr class="even">
+<td align="left">Numeric negative or positive</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+</tr>
+<tr class="odd">
+<td align="left">Binary categorical</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+</tr>
+<tr class="even">
+<td align="left">Ordered categorical</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">Yes</td>
+<td align="left">No</td>
+<td align="left">No</td>
+<td align="left">No</td>
+</tr>
+</tbody>
+</table>
+<p>Now let’s take a look at the second quote.</p>
+</div>
+<div id="quote-2-we-have-many-different-service-providers-who-deliver-the-program" class="section level4">
+<h4><span class="header-section-number">4.1.1.2</span> Quote 2: We have many different service providers who deliver the program</h4>
+<p>X</p>
+</div>
+</div>
+</div>
+<div id="specify-appropriately-uncertain-priors-for-your-context-despite-purported-stakeholder-certainty" class="section level2">
+<h2><span class="header-section-number">4.2</span> 2. Specify appropriately uncertain priors for your context, despite purported stakeholder certainty</h2>
+<p>In my consulting experience, I have encountered stakeholders who maintain a sense of certainty and are adamant about outcomes being X or something must be Y. While the above example showed that it is possible to elicit useful information for statistical models from consultations, it is important to temper this with an understanding that there is very likely quite a bit of error or uncertainty around these statements. It may be tempting to take stakeholder information and construct a very narrow prior, and in some cases this is appropriate, but in consulting and policy/program work, it is more often than not a very messy and complex landscape where quantification of uncertainty is much needed and very important. This means analysts need to be able to listen to, understand, and value stakeholder information, but also consider it alongside the statistical implications.</p>
+</div>
+<div id="think-generatively-about-the-underlying-statistical-process-of-interest" class="section level2">
+<h2><span class="header-section-number">4.3</span> 3. Think generatively about the underlying statistical process of interest</h2>
+<p>We covered much of the detail in this component in an earlier chapter, but will discuss it briefly again here. The basic premise is to think in-depth about the statistical process that might generate the data you will see. This will govern the selection of probability density/probability mass function used which has major implications for the analysis. A sample line of questioning that an analyst may consider at this stage is presented below (we are going to assume the outcome is continuous for the example):</p>
+<ul>
+<li>Is my outcome categorical, ordinal or continuous?</li>
+<li>Does any evidence exist about the population distribution or distributions of other samples?</li>
+<li>Is my outcome likely to be roughly normally distributed in the population? Why/why not?</li>
+<li>Is there likely to be more edge/extreme cases than one would expect in a normal distribution?</li>
+</ul>
+</div>
+<div id="test-competing-models-using-loo-cv-and-k-fold-cv" class="section level2">
+<h2><span class="header-section-number">4.4</span> 4. Test competing models using LOO-CV and K-Fold-CV</h2>
+<p><a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">Cross-validation (CV)</a> is a powerful out-of-sample-based tool for model selection and evaluation of model performance (<a href="https://link.springer.com/article/10.1007/s11222-016-9696-4">Vehtari, Gelman, &amp; Gabry, 2016</a>). At a high level, it essentially works by removing a select number of samples X many times and . See <a href="https://avehtari.github.io/modelselection/roaches.html">this article</a> by Vehtari (2017) for a great explanation and applied example of Bayesian model selection using cross-validation techniques. There are two main CV techniques used for evaluating Bayesian models:</p>
+<ol style="list-style-type: decimal">
+<li>Leave-one-out cross-validation</li>
+<li>K-Fold cross-validation</li>
+</ol>
+<div id="leave-one-out-cross-validation" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Leave-one-out cross-validation</h3>
+<p>Leave-one-out cross-validation (LOO-CV or just ‘LOO’) is the most common form of CV for Bayesian analysis. It essentially works by removing a single datapoint as the <em>test</em> validation set, and using the remaining datapoints as the <em>train</em> set. We can compare models using the <code>loo</code> package in <code>R</code> easily with the function <code>loo_compare()</code> (where <code>loo1</code>, <code>loo2</code> etc are loo objects):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb11-1"></a><span class="kw">library</span>(loo)</span>
+<span id="cb11-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb11-2"></a><span class="kw">loo_compare</span>(loo1,loo2)</span></code></pre></div>
+</div>
+<div id="k-fold-cross-validation" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> K-Fold cross-validation</h3>
+<p>K-Fold cross validation (K-Fold) is a technique commonly employed by Bayesian analysts when models are more complex and include random effects, typically at the individual level. Traditional LOO is inappropriate for these models, because the random effects term is highly sensitive to the removal of any observations. K-Fold gets around this problem by diving up the data into <em>K</em> number of subsets, and then refitting the model <em>K</em> times, each time leaving out a single subset. Luckily for us, the fantastic <code>loo</code> package in <code>R</code> allows for comparison of models evaluated using LOO and K-Fold using the same <code>loo_compare()</code> function seen in the LOO section above.</p>
+</div>
+</div>
+<div id="emphasise-credible-intervals-over-point-estimates-in-outputs-and-graphics" class="section level2">
+<h2><span class="header-section-number">4.5</span> 5. Emphasise credible intervals over point estimates in outputs and graphics</h2>
+<p>The final component in the structured Bayesian workflow is the presentation of findings. This is the most important part of the process for convincing others (especially non-technical people) that your workflow is appropriate and more informative than the comparatively quicker and easier frequentist modelling equivalent. Further, good data visualisation and presentation of findings (i.e. tables and descriptions) are key to <strong>not</strong> misleading readers into a false sense of certainty - one that permeates typical consulting reports where <em>p</em> values are seen as the most important thing and values such as <a href="https://en.wikipedia.org/wiki/Standard_error">standard errors</a> and <a href="https://en.wikipedia.org/wiki/Confidence_interval">confidence intervals</a> are typically omitted. The single most useful thing an analyst can do after modelling is complete, is present appropriate uncertainty bounds around any statistical outputs. Within the Bayesian framework, these are known as <a href="https://en.wikipedia.org/wiki/Credible_interval">credible intervals</a>.</p>
+<div id="credible-intervals-versus-confidence-intervals" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Credible intervals versus confidence intervals</h3>
+<p>Credible intervals specify the range in which a parameter values lies with a specified probability (compared to confidence intervals which are <em>not</em> probability distributions). Instead, confidence intervals are based off the frequentist long-run frequency concept. This denotes that if the data were collected many more time (e.g. 100), the parameter value would lie in a given range 95 out of those 100 times (without much care to <em>how</em> far outside the range it was in the other 5). Remember that in Bayesian statistics we treat parameters as random (and data as fixed) values to be estimated, while frequentists assume parameters are fixed values (and data is random) and can be better understood by collecting more data. Much like confidence intervals, the choice of interval is rather arbitrary, but it is common to see combinations of <code>80%</code>, <code>90%</code>, and <code>95%</code> in Bayesian analysis.</p>
+<p>Let’s fit some Bayesian (and frequentist) models and graph them in a few different styles so you can get a sense of what these visualisations might look like. Note that producing these graphics in standard consulting tools such as Microsoft Excel or Think-cell is non-trivial if not impossible (as well as not being reproducible).</p>
+</div>
+<div id="uncertainty-visualisation-example-1-bayesian-posterior-distributions" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Uncertainty Visualisation Example 1: Bayesian posterior distributions</h3>
+<p>The intuition behind uncertainty visualisation is the most important part of this section, but please have a read through the data wrangling and modelling code to try and understand what I have done. This first chunk of code is simply loading in and preparing the data for modelling. We are going to be looking at the <a href="https://australianelectionstudy.org/voter-studies/">Australian Election Voter Study</a> and using 2013 data to derive informative priors for analysis on 2016 data. This is an example of a project that is perfect for a Bayesian approach and one that many consulting firms might undertake, as many firms release annual reports/updates on key sectors they service. A lot of tutorials and texts would opt for a synthetic or simple example here, but I want to highlight in this example that in consulting/program evaluation, when it’s done well, so much work is performed on just the preprocessing before any analysis is conducted. I won’t explain too much of the specifics here as data wrangling is not the focus of this book, but please run each segment and explore what I have done if you are not familiar with any of what I have written.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-1"></a><span class="co"># Read in datafiles and reduce dataset size to columns of interest</span></span>
+<span id="cb12-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-2"></a></span>
+<span id="cb12-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-3"></a>d_<span class="dv">2013</span> &lt;-<span class="st"> </span><span class="kw">read_sav</span>(<span class="st">&quot;data/2. Australian Election Study, 2013.sav&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(b1, a1, h1, h2)) <span class="op">%&gt;%</span></span>
+<span id="cb12-5"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-5"></a><span class="st">  </span><span class="kw">drop_na</span>()</span>
+<span id="cb12-6"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-6"></a></span>
+<span id="cb12-7"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-7"></a>d_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">read_sas</span>(<span class="st">&quot;data/2. Australian Election Study, 2016.sas7bdat&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-8"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(B1, A1, H1, H2)) <span class="op">%&gt;%</span></span>
+<span id="cb12-9"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-9"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span></span>
+<span id="cb12-10"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-10"></a><span class="st">  </span><span class="kw">clean_names</span>()</span>
+<span id="cb12-11"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-11"></a></span>
+<span id="cb12-12"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-12"></a><span class="co"># Function to recode parties so they are interpretable, and clean up other variables</span></span>
+<span id="cb12-13"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-13"></a></span>
+<span id="cb12-14"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-14"></a>cleaner &lt;-<span class="st"> </span><span class="cf">function</span>(data, year) {</span>
+<span id="cb12-15"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-15"></a>  </span>
+<span id="cb12-16"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-16"></a>  <span class="co"># Recode parties</span></span>
+<span id="cb12-17"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-17"></a>  </span>
+<span id="cb12-18"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-18"></a>  tmp &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span></span>
+<span id="cb12-19"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-19"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">b1 =</span> <span class="kw">as.numeric</span>(b1)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb12-20"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-20"></a><span class="st">    </span><span class="kw">filter</span>(b1 <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-21"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-21"></a><span class="st">    </span><span class="kw">filter</span>(a1 <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-22"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-22"></a><span class="st">    </span><span class="kw">filter</span>(h1 <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-23"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-23"></a><span class="st">    </span><span class="kw">filter</span>(h2 <span class="op">!=</span><span class="st"> </span><span class="dv">999</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-24"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-24"></a><span class="st">    </span><span class="kw">filter</span>(b1 <span class="op">!=</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-25"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-25"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">b1_name =</span> <span class="kw">case_when</span>(</span>
+<span id="cb12-26"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-26"></a>           b1 <span class="op">==</span><span class="st"> &quot;1&quot;</span> <span class="op">~</span><span class="st"> &quot;Liberal&quot;</span>,</span>
+<span id="cb12-27"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-27"></a>           b1 <span class="op">==</span><span class="st"> &quot;2&quot;</span> <span class="op">~</span><span class="st"> &quot;Labor&quot;</span>,</span>
+<span id="cb12-28"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-28"></a>           b1 <span class="op">==</span><span class="st"> &quot;3&quot;</span> <span class="op">~</span><span class="st"> &quot;National (Country) Party&quot;</span>,</span>
+<span id="cb12-29"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-29"></a>           b1 <span class="op">==</span><span class="st"> &quot;4&quot;</span> <span class="op">~</span><span class="st"> &quot;Greens&quot;</span>,</span>
+<span id="cb12-30"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-30"></a>           b1 <span class="op">==</span><span class="st"> &quot;5&quot;</span> <span class="op">~</span><span class="st"> &quot;Other party&quot;</span>,</span>
+<span id="cb12-31"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-31"></a>           b1 <span class="op">==</span><span class="st"> &quot;6&quot;</span> <span class="op">~</span><span class="st"> &quot;No party&quot;</span>))</span>
+<span id="cb12-32"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-32"></a>  </span>
+<span id="cb12-33"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-33"></a>  <span class="co"># Calculate age and make response variable an ordered factor</span></span>
+<span id="cb12-34"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-34"></a>  </span>
+<span id="cb12-35"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-35"></a>  tmp1 &lt;-<span class="st"> </span>tmp <span class="op">%&gt;%</span></span>
+<span id="cb12-36"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-36"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age =</span> year <span class="op">-</span><span class="st"> </span>h2) <span class="op">%&gt;%</span></span>
+<span id="cb12-37"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-37"></a><span class="st">    </span><span class="kw">mutate</span>(age <span class="op">&gt;=</span><span class="st"> </span><span class="dv">18</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-38"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-38"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">a1 =</span> <span class="kw">factor</span>(a1, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>), <span class="dt">ordered =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb12-39"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-39"></a>  </span>
+<span id="cb12-40"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-40"></a>  <span class="kw">return</span>(tmp1)</span>
+<span id="cb12-41"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-41"></a>}</span>
+<span id="cb12-42"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-42"></a></span>
+<span id="cb12-43"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-43"></a>prep_<span class="dv">2013</span> &lt;-<span class="st"> </span><span class="kw">cleaner</span>(d_<span class="dv">2013</span>, <span class="dv">2013</span>)</span>
+<span id="cb12-44"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-44"></a>prep_<span class="dv">2016</span> &lt;-<span class="st"> </span><span class="kw">cleaner</span>(d_<span class="dv">2016</span>, <span class="dv">2016</span>)</span>
+<span id="cb12-45"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-45"></a></span>
+<span id="cb12-46"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-46"></a><span class="co"># Build 2013 model with vague and uninformative priors</span></span>
+<span id="cb12-47"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-47"></a></span>
+<span id="cb12-48"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-48"></a>m1 &lt;-<span class="st"> </span><span class="kw">brm</span>(a1 <span class="op">~</span><span class="st"> </span>b1 <span class="op">+</span><span class="st"> </span>h1 <span class="op">+</span><span class="st"> </span>h2,</span>
+<span id="cb12-49"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-49"></a>          <span class="dt">data =</span> prep_<span class="dv">2013</span>, <span class="dt">family =</span> <span class="kw">cumulative</span>(<span class="st">&quot;logit&quot;</span>),</span>
+<span id="cb12-50"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-50"></a>          <span class="dt">iter =</span> <span class="dv">2000</span>, <span class="dt">chains =</span> <span class="dv">3</span>, <span class="dt">seed =</span> <span class="dv">123</span>)</span>
+<span id="cb12-51"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-51"></a></span>
+<span id="cb12-52"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-52"></a><span class="co"># Visualise distribution of coefficient posteriors to get correct prior shape for 2016</span></span>
+<span id="cb12-53"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-53"></a></span>
+<span id="cb12-54"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-54"></a><span class="kw">as.data.frame</span>(m1) <span class="op">%&gt;%</span></span>
+<span id="cb12-55"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-55"></a><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span></span>
+<span id="cb12-56"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-56"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(b_b1, b_h1, b_h2)) <span class="op">%&gt;%</span></span>
+<span id="cb12-57"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-57"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> parameter, <span class="dt">value =</span> value, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-58"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-58"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> value)) <span class="op">+</span></span>
+<span id="cb12-59"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-59"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.001</span>, <span class="dt">fill =</span> <span class="st">&quot;#ff764a&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-60"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-60"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Posterior distributions for 2013&quot;</span>,</span>
+<span id="cb12-61"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-61"></a>       <span class="dt">x =</span> <span class="st">&quot;Coefficient Value&quot;</span>,</span>
+<span id="cb12-62"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-62"></a>       <span class="dt">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb12-63"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-63"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb12-64"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb12-64"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>parameter)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The distribution for the coefficient of <code>b1</code> (party) seems approximately normal so we will use that for the 2016 model. The distribution for the coefficient of <code>h1</code> (sex) has fatter tails than a normal distribution, so we will specify a Cauchy for this variable. The distribution for the coefficient of <code>h2</code> (age) is a bit hard to determine visually with the scale of the other variables squishing it. Let’s plot it by itself to see. It’s mildly <a href="https://en.wikipedia.org/wiki/Kurtosis">kurtotic</a>, but largely it appears we have another normally-distributed coefficient posterior.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-1"></a><span class="kw">as.data.frame</span>(m1) <span class="op">%&gt;%</span></span>
+<span id="cb13-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-2"></a><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(b_b1, b_h1, b_h2)) <span class="op">%&gt;%</span></span>
+<span id="cb13-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-4"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> parameter, <span class="dt">value =</span> value, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-5"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-5"></a><span class="st">  </span><span class="kw">filter</span>(parameter <span class="op">==</span><span class="st"> &quot;b_h2&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-6"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> value)) <span class="op">+</span></span>
+<span id="cb13-7"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-7"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.001</span>, <span class="dt">fill =</span> <span class="st">&quot;#ff764a&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-8"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Posterior distributions for 2013&quot;</span>,</span>
+<span id="cb13-9"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Coefficient Value&quot;</span>,</span>
+<span id="cb13-10"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-10"></a>       <span class="dt">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="op">+</span></span>
+<span id="cb13-11"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-11"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb13-12"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb13-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>parameter)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>We can now dynamically extract the mean and standard deviation of each coefficient and build these into the 2016 model directly.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-1"></a><span class="co"># Extract model components to use as prior for 2016</span></span>
+<span id="cb14-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-2"></a></span>
+<span id="cb14-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-3"></a>priors &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(m1) <span class="op">%&gt;%</span></span>
+<span id="cb14-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-4"></a><span class="st">  </span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span></span>
+<span id="cb14-5"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">beta_party_mean =</span> <span class="kw">mean</span>(b_b1),</span>
+<span id="cb14-6"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-6"></a>            <span class="dt">beta_party_sd =</span> <span class="kw">sd</span>(b_b1),</span>
+<span id="cb14-7"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-7"></a>            <span class="dt">beta_sex_mean =</span> <span class="kw">mean</span>(b_h1),</span>
+<span id="cb14-8"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-8"></a>            <span class="dt">beta_sex_sd =</span> <span class="kw">sd</span>(b_h1),</span>
+<span id="cb14-9"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-9"></a>            <span class="dt">beta_age_mean =</span> <span class="kw">mean</span>(b_h2),</span>
+<span id="cb14-10"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-10"></a>            <span class="dt">beta_age_sd =</span> <span class="kw">sd</span>(b_h2))</span>
+<span id="cb14-11"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-11"></a></span>
+<span id="cb14-12"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-12"></a><span class="co"># Insert extracted values into priors for 2016 use</span></span>
+<span id="cb14-13"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-13"></a></span>
+<span id="cb14-14"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-14"></a>party_prior &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;normal(&quot;</span>,priors<span class="op">$</span>beta_party_mean,<span class="st">&quot;,&quot;</span>,priors<span class="op">$</span>beta_party_sd,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb14-15"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-15"></a>sex_prior &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;cauchy(&quot;</span>,priors<span class="op">$</span>beta_sex_mean,<span class="st">&quot;,&quot;</span>,priors<span class="op">$</span>beta_sex_sd,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb14-16"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-16"></a>age_prior &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;normal(&quot;</span>,priors<span class="op">$</span>beta_age_mean,<span class="st">&quot;,&quot;</span>,priors<span class="op">$</span>beta_age_sd,<span class="st">&quot;)&quot;</span>)</span>
+<span id="cb14-17"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-17"></a></span>
+<span id="cb14-18"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-18"></a><span class="co"># Fit 2016 model</span></span>
+<span id="cb14-19"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-19"></a></span>
+<span id="cb14-20"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-20"></a>m2 &lt;-<span class="st"> </span><span class="kw">brm</span>(a1 <span class="op">~</span><span class="st"> </span>b1 <span class="op">+</span><span class="st"> </span>h1 <span class="op">+</span><span class="st"> </span>h2,</span>
+<span id="cb14-21"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-21"></a>          <span class="dt">data =</span> prep_<span class="dv">2013</span>, <span class="dt">family =</span> <span class="kw">cumulative</span>(<span class="st">&quot;logit&quot;</span>),</span>
+<span id="cb14-22"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-22"></a>          <span class="dt">prior =</span> <span class="kw">c</span>(<span class="kw">set_prior</span>(<span class="dt">prior =</span> party_prior, <span class="dt">class =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">coef =</span> <span class="st">&quot;b1&quot;</span>),</span>
+<span id="cb14-23"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-23"></a>                    <span class="kw">set_prior</span>(<span class="dt">prior =</span> sex_prior, <span class="dt">class =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">coef =</span> <span class="st">&quot;h1&quot;</span>),</span>
+<span id="cb14-24"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-24"></a>                    <span class="kw">set_prior</span>(<span class="dt">prior =</span> age_prior, <span class="dt">class =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">coef =</span> <span class="st">&quot;h2&quot;</span>)),</span>
+<span id="cb14-25"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb14-25"></a>          <span class="dt">iter =</span> <span class="dv">2000</span>, <span class="dt">chains =</span> <span class="dv">3</span>, <span class="dt">seed =</span> <span class="dv">123</span>)</span></code></pre></div>
+<p>Now that our model has run, we can evaluate how well it fit through a few key visualisations using the excellent <a href="https://mc-stan.org/bayesplot/#:~:text=bayesplot%20is%20an%20R%20package,functions%20from%20the%20ggplot2%20package."><code>bayesplot</code></a> package.</p>
+<div id="model-fit-1-posterior-predictive-checks" class="section level4">
+<h4><span class="header-section-number">4.5.2.1</span> Model Fit 1: Posterior predictive checks</h4>
+<p>Posterior predictive checks (PPC) are a very useful tool for visually model fit and the model’s capacity to simulate the observed data. For an ordinal model, we can produce barplots rather than continuous distributions. Ideally, we want our simulated data <code>yrep</code> (dark blue point and bars) to be overlapping with the top of the real sample <code>y</code> bars.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb15-1"></a><span class="kw">pp_check</span>(m2, <span class="dt">type =</span> <span class="st">&quot;bars&quot;</span>, <span class="dt">nsamples =</span> <span class="dv">100</span>) <span class="op">+</span></span>
+<span id="cb15-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb15-2"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Posterior predictive check&quot;</span>,</span>
+<span id="cb15-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb15-3"></a>       <span class="dt">x =</span> <span class="st">&quot;Interest in Politics&quot;</span>,</span>
+<span id="cb15-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb15-4"></a>       <span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can also check the cumulative probability function. Ideally, for each level of interest in politics, we want our simulated data to track around but close to the real sample.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb16-1"></a><span class="kw">pp_check</span>(m2, <span class="dt">type =</span> <span class="st">&quot;ecdf_overlay&quot;</span>, <span class="dt">nsamples =</span> <span class="dv">100</span>) <span class="op">+</span></span>
+<span id="cb16-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb16-2"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Posterior predictive check of cumulative probability function&quot;</span>,</span>
+<span id="cb16-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb16-3"></a>       <span class="dt">x =</span> <span class="st">&quot;Interest in Politics&quot;</span>,</span>
+<span id="cb16-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb16-4"></a>       <span class="dt">y =</span> <span class="st">&quot;Cumulative Probability&quot;</span>)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="model-fit-2-loo-cv" class="section level4">
+<h4><span class="header-section-number">4.5.2.2</span> Model Fit 2: LOO-CV</h4>
+<p>We can visually inspect our model’s sensitivity using a LOO plot. We want no values to exceed 0.5 and definitely none to exceed 0.7.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb17-1"></a>loo1 &lt;-<span class="st"> </span><span class="kw">loo</span>(m2)</span>
+<span id="cb17-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb17-2"></a><span class="kw">plot</span>(loo1)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="model-fit-3-traceplots" class="section level4">
+<h4><span class="header-section-number">4.5.2.3</span> Model Fit 3: Traceplots</h4>
+<p>At a high level, we can check if the multiple chains mixed in one line of <code>R</code> code. We want these just to look like white noise, which they do here.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb18-1"></a><span class="kw">color_scheme_set</span>(<span class="st">&quot;mix-blue-pink&quot;</span>)</span>
+<span id="cb18-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb18-2"></a><span class="kw">mcmc_trace</span>(m2, <span class="dt">facet_args =</span> <span class="kw">list</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">labeller =</span> label_parsed))</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="final-posterior-visualisation" class="section level4">
+<h4><span class="header-section-number">4.5.2.4</span> Final posterior visualisation</h4>
+<p>With model checks done, and since this section is about posterior distribution visualisation, here is how you can automate in a few-liner rather than manually building histograms like we did earlier.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb19-1"></a><span class="kw">mcmc_areas</span>(m2, <span class="dt">regex_pars =</span> <span class="kw">c</span>(<span class="st">&quot;b1&quot;</span>, <span class="st">&quot;h1&quot;</span>, <span class="st">&quot;h2&quot;</span>), <span class="dt">area_method =</span> <span class="st">&quot;scaled height&quot;</span>) <span class="op">+</span></span>
+<span id="cb19-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb19-2"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Coefficient posterior distributions&quot;</span>)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="uncertainty-visualisation-example-2-frequentist-logistic-regression" class="section level3">
+<h3><span class="header-section-number">4.5.3</span> Uncertainty Visualisation Example 2: Frequentist logistic regression</h3>
+<p>Uncertainty visualisation is not limited to Bayesian statistics. Many <code>R</code> programmers are likely familiar with the <code>geom_smooth()</code> function that enables automated plotting of regression models and their confidence intervals. We can produce a quick univariate graph to illustrate this very easily using the classic <code>mtcars</code> dataset:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-1"></a>mtcars <span class="op">%&gt;%</span></span>
+<span id="cb20-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> mpg, <span class="dt">y =</span> vs)) <span class="op">+</span></span>
+<span id="cb20-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb20-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x, <span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="dt">method.args =</span> <span class="kw">list</span>(<span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>), <span class="dt">se =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb20-5"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-5"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb20-6"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mile per Gallon&quot;</span>,</span>
+<span id="cb20-7"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb20-7"></a>       <span class="dt">y =</span> <span class="st">&quot;vs&quot;</span>)</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>This graph appropriately denotes the relative uncertainty associated with the change in miles per gallon and the corresponding change in vs. However, while a univariate case makes for an easy graph, a multivariate case is much more realistic, where the end graphic is likely a plot of the regression coefficients and corresponding confidence intervals.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-1"></a><span class="co"># Fit model</span></span>
+<span id="cb21-2"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-2"></a></span>
+<span id="cb21-3"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-3"></a>m3 &lt;-<span class="st"> </span><span class="kw">glm</span>(vs <span class="op">~</span><span class="st"> </span>mpg <span class="op">+</span><span class="st"> </span>cyl <span class="op">+</span><span class="st"> </span>disp, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb21-4"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-4"></a>          <span class="dt">data =</span> mtcars)</span>
+<span id="cb21-5"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-5"></a></span>
+<span id="cb21-6"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-6"></a><span class="co"># Extract coefficients and confidence intervals</span></span>
+<span id="cb21-7"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-7"></a></span>
+<span id="cb21-8"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-8"></a>coefs &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">coef</span>(m3))</span>
+<span id="cb21-9"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-9"></a></span>
+<span id="cb21-10"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-10"></a>coefs &lt;-<span class="st"> </span><span class="kw">rownames_to_column</span>(coefs, <span class="st">&quot;parameter&quot;</span>)</span>
+<span id="cb21-11"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-11"></a></span>
+<span id="cb21-12"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-12"></a>confs &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">confint</span>(m3)) <span class="op">%&gt;%</span></span>
+<span id="cb21-13"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-13"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">lower =</span> <span class="st">&quot;2.5 %&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb21-14"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-14"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">upper =</span> <span class="st">&quot;97.5 %&quot;</span>)</span>
+<span id="cb21-15"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-15"></a></span>
+<span id="cb21-16"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-16"></a>confs &lt;-<span class="st"> </span><span class="kw">rownames_to_column</span>(confs, <span class="st">&quot;parameter&quot;</span>)</span>
+<span id="cb21-17"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-17"></a></span>
+<span id="cb21-18"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-18"></a>outs &lt;-<span class="st"> </span>coefs <span class="op">%&gt;%</span></span>
+<span id="cb21-19"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-19"></a><span class="st">  </span><span class="kw">left_join</span>(confs, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;parameter&quot;</span> =<span class="st"> &quot;parameter&quot;</span>))</span>
+<span id="cb21-20"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-20"></a></span>
+<span id="cb21-21"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-21"></a><span class="co"># Exponentiate to convert log-odds to odds for easier interpretation</span></span>
+<span id="cb21-22"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-22"></a></span>
+<span id="cb21-23"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-23"></a>odds &lt;-<span class="st"> </span>outs <span class="op">%&gt;%</span></span>
+<span id="cb21-24"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-24"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">coefficient =</span> <span class="st">`</span><span class="dt">coef(m3)</span><span class="st">`</span>) <span class="op">%&gt;%</span></span>
+<span id="cb21-25"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-25"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">coefficient =</span> <span class="kw">exp</span>(coefficient),</span>
+<span id="cb21-26"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-26"></a>         <span class="dt">lower =</span> <span class="kw">exp</span>(lower),</span>
+<span id="cb21-27"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-27"></a>         <span class="dt">upper =</span> <span class="kw">exp</span>(upper)) <span class="op">%&gt;%</span></span>
+<span id="cb21-28"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-28"></a><span class="st">  </span><span class="kw">filter</span>(parameter <span class="op">!=</span><span class="st"> &quot;(Intercept)&quot;</span>)</span>
+<span id="cb21-29"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-29"></a></span>
+<span id="cb21-30"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-30"></a><span class="co"># Plot it</span></span>
+<span id="cb21-31"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-31"></a></span>
+<span id="cb21-32"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-32"></a>odds <span class="op">%&gt;%</span></span>
+<span id="cb21-33"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-33"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb21-34"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-34"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> lower, <span class="dt">xend =</span> upper, <span class="dt">y =</span> parameter, <span class="dt">yend =</span> parameter), <span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">colour =</span> <span class="st">&quot;#ff764a&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span></span>
+<span id="cb21-35"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-35"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> coefficient, <span class="dt">y =</span> <span class="kw">reorder</span>(parameter, coefficient)), <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">colour =</span> <span class="st">&quot;#003f5c&quot;</span>) <span class="op">+</span></span>
+<span id="cb21-36"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-36"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;#374c80&quot;</span>) <span class="op">+</span></span>
+<span id="cb21-37"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-37"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Logistic regression model summary&quot;</span>,</span>
+<span id="cb21-38"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-38"></a>       <span class="dt">subtitle =</span> <span class="st">&quot;Points indicate mean estimate, bands indicate 95% confidence interval&quot;</span>,</span>
+<span id="cb21-39"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-39"></a>       <span class="dt">x =</span> <span class="st">&quot;Value&quot;</span>,</span>
+<span id="cb21-40"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-40"></a>       <span class="dt">y =</span> <span class="st">&quot;Parameter&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb21-41"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#cb21-41"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="03-workflow_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="other-useful-uncertainty-visualisation-resources" class="section level3">
+<h3><span class="header-section-number">4.5.4</span> Other useful uncertainty visualisation resources</h3>
+<p>Many other great statisticians and researchers have produced guides and software packages for uncertainty visualisation. A few of these resources are listed below:</p>
+<ul>
+<li><a href="http://mjskay.github.io/tidybayes/"><code>tidybayes</code></a> - <code>R</code> package for Bayesian analysis using the <a href="https://vita.had.co.nz/papers/layered-grammar.html">grammar of graphics</a> approach</li>
+<li><a href="https://clauswilke.com/dataviz/visualizing-uncertainty.html">Visualizing uncertainty</a> - chapter from ‘Fundamentals of Data Visualisation’ by Claus O. Wilke</li>
+<li><a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2020.579267/full">Uncertain About Uncertainty: How Qualitative Expressions of Forecaster Confidence Impact Decision-Making With Uncertainty Visualizations</a> - paper by Padilla, Powell, Kay, and Hullman (2021)</li>
+</ul>
+<p>And remember: it’s almost always a bad idea to turn off confidence/credible interval shading on regression plots (yes, the frequentist equivalents too).</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
