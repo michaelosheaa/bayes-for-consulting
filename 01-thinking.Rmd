@@ -94,6 +94,8 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
+The y values in this graph represent [probability densities](https://en.wikipedia.org/wiki/Probability_density_function). If we take any area between two x values on this graph, we then have the *probability* that a value lies within. Probability densities by themselves are not probabilities, but they help us understand where most of the data points lie in the underlying distribution (higher probability density = higher concentration of data points).
+
 I'll leave the true purpose of this initial prior understanding until after we discuss the more familiar *likelihood* - or as we now know it - the probability distribution that best describes the data we have seen based on an estimated mean and standard deviation.
 
 ## Plotting a random sample of actual data
