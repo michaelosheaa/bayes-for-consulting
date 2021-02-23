@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 When the normal distribution is inappropriate (generalised linear models) | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</title>
+  <meta name="description" content="Chapter 3 When the normal distribution is inappropriate (generalised linear models) | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 When the normal distribution is inappropriate (generalised linear models) | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="hendersontrent/bayes-for-consulting" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 When the normal distribution is inappropriate (generalised linear models) | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  
+  
+  
+
+<meta name="author" content="Trent Henderson" />
+
+
+<meta name="date" content="2021-02-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="thinking-generatively.html"/>
+<link rel="next" href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="thinking-generatively.html"><a href="thinking-generatively.html"><i class="fa fa-check"></i><b>2</b> Thinking generatively</a><ul>
+<li class="chapter" data-level="2.1" data-path="thinking-generatively.html"><a href="thinking-generatively.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing R and RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="thinking-generatively.html"><a href="thinking-generatively.html#a-short-psychological-example-adult-satisfaction-with-their-job"><i class="fa fa-check"></i><b>2.2</b> A short psychological example: Adult satisfaction with their job</a></li>
+<li class="chapter" data-level="2.3" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-our-best-guess-at-the-process"><i class="fa fa-check"></i><b>2.3</b> Plotting our best guess at the process</a></li>
+<li class="chapter" data-level="2.4" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-a-random-sample-of-actual-data"><i class="fa fa-check"></i><b>2.4</b> Plotting a random sample of actual data</a></li>
+<li class="chapter" data-level="2.5" data-path="thinking-generatively.html"><a href="thinking-generatively.html#combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process"><i class="fa fa-check"></i><b>2.5</b> Combining our best guess and the observed random sample of data for an informed estimate of the population process</a></li>
+<li class="chapter" data-level="2.6" data-path="thinking-generatively.html"><a href="thinking-generatively.html#the-essence-of-bayesian-statistics"><i class="fa fa-check"></i><b>2.6</b> The essence of Bayesian statistics</a></li>
+<li class="chapter" data-level="2.7" data-path="thinking-generatively.html"><a href="thinking-generatively.html#taking-uncertainty-quantification-a-step-further"><i class="fa fa-check"></i><b>2.7</b> Taking uncertainty quantification a step further</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><i class="fa fa-check"></i><b>3</b> When the normal distribution is inappropriate (generalised linear models)</a><ul>
+<li class="chapter" data-level="3.1" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#poisson"><i class="fa fa-check"></i><b>3.1</b> Poisson</a></li>
+<li class="chapter" data-level="3.2" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#negative-binomial"><i class="fa fa-check"></i><b>3.2</b> Negative binomial</a></li>
+<li class="chapter" data-level="3.3" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#gamma"><i class="fa fa-check"></i><b>3.3</b> Gamma</a></li>
+<li class="chapter" data-level="3.4" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#beta"><i class="fa fa-check"></i><b>3.4</b> Beta</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><i class="fa fa-check"></i><b>4</b> A structured Bayesian workflow for program evaluation and management consulting</a><ul>
+<li class="chapter" data-level="4.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#use-qualitative-project-components-to-develop-priors"><i class="fa fa-check"></i><b>4.1</b> 1. Use qualitative project components to develop priors</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#how-to-elicit-priors-from-interviews-of-qualitative-reading"><i class="fa fa-check"></i><b>4.1.1</b> How to elicit priors from interviews of qualitative reading</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#specify-appropriately-uncertain-priors-for-your-context-despite-purported-stakeholder-certainty"><i class="fa fa-check"></i><b>4.2</b> 2. Specify appropriately uncertain priors for your context, despite purported stakeholder certainty</a></li>
+<li class="chapter" data-level="4.3" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#think-generatively-about-the-underlying-statistical-process-of-interest"><i class="fa fa-check"></i><b>4.3</b> 3. Think generatively about the underlying statistical process of interest</a></li>
+<li class="chapter" data-level="4.4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#test-competing-models-using-loo-cv-and-k-fold-cv"><i class="fa fa-check"></i><b>4.4</b> 4. Test competing models using LOO-CV and K-Fold-CV</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>4.4.1</b> Leave-one-out cross-validation</a></li>
+<li class="chapter" data-level="4.4.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>4.4.2</b> K-Fold cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#emphasise-credible-intervals-over-point-estimates-in-outputs-and-graphics"><i class="fa fa-check"></i><b>4.5</b> 5. Emphasise credible intervals over point estimates in outputs and graphics</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#credible-intervals-versus-confidence-intervals"><i class="fa fa-check"></i><b>4.5.1</b> Credible intervals versus confidence intervals</a></li>
+<li class="chapter" data-level="4.5.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#uncertainty-visualisation-example-1-bayesian-posterior-distributions"><i class="fa fa-check"></i><b>4.5.2</b> Uncertainty Visualisation Example 1: Bayesian posterior distributions</a></li>
+<li class="chapter" data-level="4.5.3" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#uncertainty-visualisation-example-2-frequentist-logistic-regression"><i class="fa fa-check"></i><b>4.5.3</b> Uncertainty Visualisation Example 2: Frequentist logistic regression</a></li>
+<li class="chapter" data-level="4.5.4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#other-useful-uncertainty-visualisation-resources"><i class="fa fa-check"></i><b>4.5.4</b> Other useful uncertainty visualisation resources</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/hendersontrent/bayes-for-consulting" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="when-the-normal-distribution-is-inappropriate-generalised-linear-models" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> When the normal distribution is inappropriate (generalised linear models)</h1>
+<p>While the normal distribution is very useful and even pops up in nature more often than one might expect, it is rarely the case that our variable of interest takes on this form specifically. Most of the time, are response variable probably is better measured by another probability density function. We are going to take a look at some main ones here.</p>
+<div id="poisson" class="section level2">
+<h2><span class="header-section-number">3.1</span> Poisson</h2>
+<p>A common case encountered by psychologists and social science researchers is when the outcome variable is a non-zero integer, or a ‘count’. For example, you may wish to understand the relationship at the postcode level between socioeconomic variables (e.g. average household income) and the number of residents who receive a clinical diagnosis of depression. The equation for this would look the same as the linear regression examples provided earlier in the book, however, we have one small problem:</p>
+<p><em>We cannot have decimals of a person. This makes a probability density function inappropriate to understand count data. Further, if we ran a linear regression on this data, the output would be continuous with decimals which would render any predictions we wish to make about the number of persons with depression inaccurate. Extrapolating the linear regression would also yield negative values, which does not make sense.</em></p>
+<p>Instead, while the formula remains the same, we turn to a type of distribution that instead uses a <em>probability mass function</em> which is designed to work with count data. This distribution is known as the <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a>. Whereas the normal distribution is parameterised by its mean and standard deviation, the Poisson distribution is specified by one parameter - <em>lambda</em> - which assumes that mean and variance are equal. The formula for a Poisson distribution is:</p>
+<p><span class="math inline">\(P(X=x) = \frac{\lambda^{x}e^{-\lambda}}{x!}\)</span></p>
+<p>We can sample from a Poisson distribution in R quite easily:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-1"></a>pois_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">30</span>, <span class="dt">by =</span> <span class="dv">1</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb6-2"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">dpois</span>(x, <span class="dt">lambda =</span> <span class="dv">3</span>)) <span class="co"># Probability densities for the generated x variable values</span></span>
+<span id="cb6-3"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-3"></a></span>
+<span id="cb6-4"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-4"></a><span class="co"># Make a plot</span></span>
+<span id="cb6-5"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-5"></a></span>
+<span id="cb6-6"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-6"></a>pois_data <span class="op">%&gt;%</span></span>
+<span id="cb6-7"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb6-8"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb6-9"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb6-10"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-10"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></span>
+<span id="cb6-11"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">30</span>)) <span class="op">+</span></span>
+<span id="cb6-12"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb6-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="02-glm_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="negative-binomial" class="section level2">
+<h2><span class="header-section-number">3.2</span> Negative binomial</h2>
+<p>While Poisson distributions are immensely useful, it is not always the case that the mean of our data is equivalent to the variance. Luckily, there is a non-negative integer probability distribution for when this is the case - the <a href="https://en.wikipedia.org/wiki/Negative_binomial_distribution">negative binomial</a>. The negative binomial <em>generalises</em> the Poisson distribution to when mean and variance are not the same. This makes them useful for many problems in the social sciences. We can simulate a negative binomial distribution and have a look at it. The negative binomial distribution can be written as:</p>
+<p><span class="math inline">\(f(k;r,p) = \frac{\Gamma(r+k)}{k!\Gamma(r)}p^{k}(1-p)^{r}\)</span></p>
+<p>We can sample from a negative binomial distribution in R:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-1"></a>nb_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">30</span>, <span class="dt">by =</span> <span class="dv">1</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">dnbinom</span>(x, <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">prob =</span> <span class="fl">0.2</span>)) <span class="co"># Probability densities for the generated x variable values</span></span>
+<span id="cb7-3"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-3"></a></span>
+<span id="cb7-4"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-4"></a><span class="co"># Make a plot</span></span>
+<span id="cb7-5"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-5"></a></span>
+<span id="cb7-6"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-6"></a>nb_data <span class="op">%&gt;%</span></span>
+<span id="cb7-7"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb7-8"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb7-9"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb7-10"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-10"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></span>
+<span id="cb7-11"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">30</span>)) <span class="op">+</span></span>
+<span id="cb7-12"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb7-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="02-glm_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="gamma" class="section level2">
+<h2><span class="header-section-number">3.3</span> Gamma</h2>
+<p><a href="https://en.wikipedia.org/wiki/Gamma_distribution">Gamma distributions</a> are another class of probability density function that have very high utility. Gamma values must be positive real numbers. Gamma distributions are typically specified in one of three ways:</p>
+<ol style="list-style-type: decimal">
+<li>With a shape parameter <em>k</em> and a scale parameter <em>theta</em></li>
+<li>With a shape parameter <em>alpha</em> = k and an inverse scale parameter <em>beta</em> = 1/<em>theta</em> (known as <em>rate</em>)</li>
+<li>With a shape parameter <em>k</em> and a mean parameter <em>mu</em> = <em>ktheta</em> = <em>alpha</em>/<em>beta</em></li>
+</ol>
+<p>The gamma distribution can be written as (in the shape-scale format):</p>
+<p><span class="math inline">\(f(x;k,\theta) = \frac{x^{k-1}e^{-\frac{x}{\theta}}}{\theta^{k}\Gamma(k)}\)</span></p>
+<p>We can sample from a gamma distribution in R:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-1"></a>gamma_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">10</span>, <span class="dt">by =</span> <span class="fl">0.05</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">dgamma</span>(x, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">scale =</span> <span class="dv">2</span>)) <span class="co"># Probability densities for the generated x variable values</span></span>
+<span id="cb8-3"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-3"></a></span>
+<span id="cb8-4"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-4"></a><span class="co"># Make a plot</span></span>
+<span id="cb8-5"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-5"></a></span>
+<span id="cb8-6"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-6"></a>gamma_data <span class="op">%&gt;%</span></span>
+<span id="cb8-7"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb8-8"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb8-9"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb8-10"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-10"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></span>
+<span id="cb8-11"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>)) <span class="op">+</span></span>
+<span id="cb8-12"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb8-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="02-glm_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="beta" class="section level2">
+<h2><span class="header-section-number">3.4</span> Beta</h2>
+<p><a href="https://en.wikipedia.org/wiki/Beta_distribution">Beta distributions</a> are unique and useful - they are specifically designed for response variables that range between 0 and 1. For example, your response variable might be the proportion of people in a given region who have a postgraduate degree. The normal distribution (and by extension standard linear regression) is inappropriate here, as extrapolation would clearly lead to values that exceed 0 in the negative direction, and 1 in the positive direction. This would limit any predictive capability outside the immediate sample. The negative binomial distribution can be written as:</p>
+<p><span class="math inline">\(f(x;\alpha,\beta) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}}\)</span></p>
+<p>We can sample from a beta distribution in R:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-1"></a>beta_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.05</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb9-2"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">dbeta</span>(x,<span class="dv">1</span>,<span class="dv">5</span>)) <span class="co"># Probability densities for the generated x variable values</span></span>
+<span id="cb9-3"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-3"></a></span>
+<span id="cb9-4"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-4"></a><span class="co"># Make a plot</span></span>
+<span id="cb9-5"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-5"></a></span>
+<span id="cb9-6"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-6"></a>beta_data <span class="op">%&gt;%</span></span>
+<span id="cb9-7"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-7"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb9-8"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-8"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb9-9"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb9-10"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-10"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability density&quot;</span>) <span class="op">+</span></span>
+<span id="cb9-11"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-11"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="op">+</span></span>
+<span id="cb9-12"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#cb9-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="02-glm_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="thinking-generatively.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

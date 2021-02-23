@@ -1,18 +1,6 @@
 # A structured Bayesian workflow for program evaluation and management consulting
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE}
-library(dplyr)
-library(tibble)
-library(magrittr)
-library(tidyr)
-library(ggplot2)
-library(scales)
-library(brms)
-library(bayesplot)
-library(loo)
-library(haven)
-library(janitor)
-```
+
 
 With a basic understanding of Bayesian statistics, its general workflow, and other statistical models and distributions, we can now take a look at the proposed structured workflow for Bayesian analysis on program evaluation and consulting projects. There are five key components to the process and each will be explored in turn below.
 
@@ -43,7 +31,8 @@ Let's take a look at the first quote. If we think distributionally, this informa
 
 We could use two distributions that a very similar to the normal, but which have fatter tails. These are the [Student's t distribution](https://en.wikipedia.org/wiki/Student%27s_t-distribution) and the [Cauchy distribution](https://en.wikipedia.org/wiki/Cauchy_distribution). We can graph their probability densities against the normal to demonstrate this shift in the tail probabilities visually:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 # Simulate some random datapoints and calculate probability densities for each distribution type
 
 tmp <- data.frame(x = seq(-6, 6, length.out = 100)) %>%
@@ -72,6 +61,8 @@ tmp %>%
 theme(legend.position = "bottom")
 ```
 
+<img src="03-workflow_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
 Evidently, either one of these new distributions might capture the subject matter expert's information better than defaulting to a normal. We can see this as the tails of all the specified distributions sit "above" that of the normal's - indicating higher probability density in the tails (i.e. the collection of extreme providers). In my code you can see I played around with the [degrees of freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_(statistics)) parameter of the Student's t distributions, but did not adjust any of the others too much. As the degrees of freedom approaches the sample size, the Student's t distribution will approximate the normal distribution. I adjusted the `df` parameter mostly for visual illustration, but the process of choosing appropriate prior distribution parameters is a very important one. Let's take a closer look.
 
 As we know, priors tend to be dominated by the likelihood when the sample size is large. We also know that this occurs especially when priors are vague (i.e. wide and "uninformative"). So if we set a normal prior with a wide standard deviation, it is likely that this will be dominated by the likelihood as it is not contributing much *specific* value compared to the (more likely) tighter likelihood distribution.
@@ -80,28 +71,17 @@ As we know, priors tend to be dominated by the likelihood when the sample size i
 
 As a useful one-stop-shop resource for choosing a distribution, the table below denotes a few high-level descriptions of values we may encounter in the real world and the probability distributions that might appropriately model it. This list is not exhaustive and should only serve as a starting point or primer to dig deeper. Further, there is no indication of appropriate distribution parameters as this is case-dependent.
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE, results = 'asis'}
-library(knitr)
 
-# Make table
+Table: (\#tab:unnamed-chunk-3)Known value types and corresponding potential distributions
 
-prior_tab <- data.frame(`Types of values` = c("Positive only", "Non-negative integer", "Numeric between 0 and 1", 
-                                              "Numeric negative or positive", "Binary categorical", "Ordered categorical")) %>%
-  mutate(Bernoulli = c("No", "No", "No", "No", "Yes", "No"),
-         Beta = c("No", "No", "Yes", "No", "No", "No"),
-         Cauchy = c("No", "No", "No", "Yes", "No", "No"),
-         Gamma = c("Yes", "No", "No", "No", "No", "No"),
-         Normal = c("No", "No", "No", "Yes", "No", "No"),
-         `Ordered logistic` = c("No", "No", "No", "No", "No", "Yes"),
-         Poisson = c("No", "Yes", "No", "No", "No", "No"),
-         `Negative binomial` = c("No", "Yes", "No", "No", "No", "No"),
-         `Student's t` = c("No", "No", "No", "Yes", "No", "No")) %>%
-  rename(`Types of values` = 1)
-
-# Render it to HTML
-
-kable(prior_tab, caption = "Known value types and corresponding potential distributions")
-```
+|Types of values              |Bernoulli |Beta |Cauchy |Gamma |Normal |Ordered logistic |Poisson |Negative binomial |Student's t |
+|:----------------------------|:---------|:----|:------|:-----|:------|:----------------|:-------|:-----------------|:-----------|
+|Positive only                |No        |No   |No     |Yes   |No     |No               |No      |No                |No          |
+|Non-negative integer         |No        |No   |No     |No    |No     |No               |Yes     |Yes               |No          |
+|Numeric between 0 and 1      |No        |Yes  |No     |No    |No     |No               |No      |No                |No          |
+|Numeric negative or positive |No        |No   |Yes    |No    |Yes    |No               |No      |No                |Yes         |
+|Binary categorical           |Yes       |No   |No     |No    |No     |No               |No      |No                |No          |
+|Ordered categorical          |No        |No   |No     |No    |No     |Yes              |No      |No                |No          |
 
 Now let's take a look at the second quote.
 
@@ -133,7 +113,8 @@ We covered much of the detail in this component in an earlier chapter, but will 
 
 Leave-one-out cross-validation (LOO-CV or just 'LOO') is the most common form of CV for Bayesian analysis. It essentially works by removing a single datapoint as the *test* validation set, and using the remaining datapoints as the *train* set. We can compare models using the `loo` package in `R` easily with the function `loo_compare()` (where `loo1`, `loo2` etc are loo objects):
 
-```{r, message = FALSE, warning = FALSE, eval = FALSE}
+
+```r
 library(loo)
 loo_compare(loo1,loo2)
 ```
@@ -156,7 +137,8 @@ Let's fit some Bayesian (and frequentist) models and graph them in a few differe
 
 The intuition behind uncertainty visualisation is the most important part of this section, but please have a read through the data wrangling and modelling code to try and understand what I have done. This first chunk of code is simply loading in and preparing the data for modelling. We are going to be looking at the [Australian Election Voter Study](https://australianelectionstudy.org/voter-studies/) and using 2013 data to derive informative priors for analysis on 2016 data. This is an example of a project that is perfect for a Bayesian approach and one that many consulting firms might undertake, as many firms release annual reports/updates on key sectors they service. A lot of tutorials and texts would opt for a synthetic or simple example here, but I want to highlight in this example that in consulting/program evaluation, when it's done well, so much work is performed on just the preprocessing before any analysis is conducted. I won't explain too much of the specifics here as data wrangling is not the focus of this book, but please run each segment and explore what I have done if you are not familiar with any of what I have written.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 # Read in datafiles and reduce dataset size to columns of interest
 
 d_2013 <- read_sav("data/2. Australian Election Study, 2013.sav") %>%
@@ -223,9 +205,12 @@ as.data.frame(m1) %>%
   facet_wrap(~parameter)
 ```
 
+<img src="03-workflow_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+
 The distribution for the coefficient of `b1` (party) seems approximately normal so we will use that for the 2016 model. The distribution for the coefficient of `h1` (sex) has fatter tails than a normal distribution, so we will specify a Cauchy for this variable. The distribution for the coefficient of `h2` (age) is a bit hard to determine visually with the scale of the other variables squishing it. Let's plot it by itself to see. It's mildly [kurtotic](https://en.wikipedia.org/wiki/Kurtosis), but largely it appears we have another normally-distributed coefficient posterior.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 as.data.frame(m1) %>%
   clean_names() %>%
   dplyr::select(c(b_b1, b_h1, b_h2)) %>%
@@ -240,9 +225,12 @@ as.data.frame(m1) %>%
   facet_wrap(~parameter)
 ```
 
+<img src="03-workflow_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+
 We can now dynamically extract the mean and standard deviation of each coefficient and build these into the 2016 model directly.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 # Extract model components to use as prior for 2016
 
 priors <- as.data.frame(m1) %>%
@@ -276,55 +264,70 @@ Now that our model has run, we can evaluate how well it fit through a few key vi
 
 Posterior predictive checks (PPC) are a very useful tool for visually model fit and the model's capacity to simulate the observed data. For an ordinal model, we can produce barplots rather than continuous distributions. Ideally, we want our simulated data `yrep` (dark blue point and bars) to be overlapping with the top of the real sample `y` bars.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 pp_check(m2, type = "bars", nsamples = 100) +
   labs(title = "Posterior predictive check",
        x = "Interest in Politics",
        y = "Count")
 ```
 
+<img src="03-workflow_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
 We can also check the cumulative probability function. Ideally, for each level of interest in politics, we want our simulated data to track around but close to the real sample.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 pp_check(m2, type = "ecdf_overlay", nsamples = 100) +
   labs(title = "Posterior predictive check of cumulative probability function",
        x = "Interest in Politics",
        y = "Cumulative Probability")
-
 ```
+
+<img src="03-workflow_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 #### Model Fit 2: LOO-CV
 
 We can visually inspect our model's sensitivity using a LOO plot. We want no values to exceed 0.5 and definitely none to exceed 0.7.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 loo1 <- loo(m2)
 plot(loo1)
 ```
+
+<img src="03-workflow_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 #### Model Fit 3: Traceplots
 
 At a high level, we can check if the multiple chains mixed in one line of `R` code. We want these just to look like white noise, which they do here.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 color_scheme_set("mix-blue-pink")
 mcmc_trace(m2, facet_args = list(nrow = 2, labeller = label_parsed))
 ```
+
+<img src="03-workflow_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 #### Final posterior visualisation
 
 With model checks done, and since this section is about posterior distribution visualisation, here is how you can automate in a few-liner rather than manually building histograms like we did earlier.
 
-```{r, message = FALSE, warning = FALSE, results = 'hide', fig.keep = TRUE}
+
+```r
 mcmc_areas(m2, regex_pars = c("b1", "h1", "h2"), area_method = "scaled height") +
   labs(title = "Coefficient posterior distributions")
 ```
+
+<img src="03-workflow_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 ### Uncertainty Visualisation Example 2: Frequentist logistic regression
 
 Uncertainty visualisation is not limited to Bayesian statistics. Many `R` programmers are likely familiar with the `geom_smooth()` function that enables automated plotting of regression models and their confidence intervals. We can produce a quick univariate graph to illustrate this very easily using the classic `mtcars` dataset:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 mtcars %>%
   ggplot(aes(x = mpg, y = vs)) +
   geom_point(size = 2) +
@@ -334,9 +337,12 @@ mtcars %>%
        y = "vs")
 ```
 
+<img src="03-workflow_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+
 This graph appropriately denotes the relative uncertainty associated with the change in miles per gallon and the corresponding change in vs. However, while a univariate case makes for an easy graph, a multivariate case is much more realistic, where the end graphic is likely a plot of the regression coefficients and corresponding confidence intervals.
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 # Fit model
 
 m3 <- glm(vs ~ mpg + cyl + disp, family = "binomial",
@@ -379,6 +385,8 @@ odds %>%
        y = "Parameter") + 
   theme_bw()
 ```
+
+<img src="03-workflow_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ### Other useful uncertainty visualisation resources
 

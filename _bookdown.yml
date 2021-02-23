@@ -1,0 +1,6 @@
+book_filename: "bayes-for-consulting"
+chapter_name: "Chapter "
+repo: https://github.com/hendersontrent/bayes-for-consulting
+output_dir: docs
+rmd_files: ["index.Rmd", "01-thinking.Rmd", "02-glm.Rmd", "03-workflow.Rmd"]
+new_session: yes

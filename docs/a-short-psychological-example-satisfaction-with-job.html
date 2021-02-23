@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 A short psychological example: Satisfaction with job | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</title>
+  <meta name="description" content="Chapter 2 A short psychological example: Satisfaction with job | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 A short psychological example: Satisfaction with job | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="hendersontrent/bayes-for-consulting" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 A short psychological example: Satisfaction with job | An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting" />
+  
+  
+  
+
+<meta name="author" content="Trent Henderson" />
+
+
+<meta name="date" content="2021-02-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="thinking-generatively.html"/>
+<link rel="next" href="concluding-remarks-and-future-plans-for-the-full-book.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="thinking-generatively.html"><a href="thinking-generatively.html"><i class="fa fa-check"></i><b>1</b> Thinking generatively</a><ul>
+<li class="chapter" data-level="1.1" data-path="thinking-generatively.html"><a href="thinking-generatively.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>1.1</b> Installing R and RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="a-short-psychological-example-satisfaction-with-job.html"><a href="a-short-psychological-example-satisfaction-with-job.html"><i class="fa fa-check"></i><b>2</b> A short psychological example: Satisfaction with job</a><ul>
+<li class="chapter" data-level="2.1" data-path="a-short-psychological-example-satisfaction-with-job.html"><a href="a-short-psychological-example-satisfaction-with-job.html#plotting-our-best-guess-at-the-process"><i class="fa fa-check"></i><b>2.1</b> Plotting our best guess at the process</a></li>
+<li class="chapter" data-level="2.2" data-path="a-short-psychological-example-satisfaction-with-job.html"><a href="a-short-psychological-example-satisfaction-with-job.html#plotting-a-random-sample-of-actual-data"><i class="fa fa-check"></i><b>2.2</b> Plotting a random sample of actual data</a></li>
+<li class="chapter" data-level="2.3" data-path="a-short-psychological-example-satisfaction-with-job.html"><a href="a-short-psychological-example-satisfaction-with-job.html#combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process"><i class="fa fa-check"></i><b>2.3</b> Combining our best guess and the observed random sample of data for an informed estimate of the population process</a></li>
+<li class="chapter" data-level="2.4" data-path="a-short-psychological-example-satisfaction-with-job.html"><a href="a-short-psychological-example-satisfaction-with-job.html#the-essence-of-bayesian-statistics"><i class="fa fa-check"></i><b>2.4</b> The essence of Bayesian statistics</a></li>
+<li class="chapter" data-level="2.5" data-path="a-short-psychological-example-satisfaction-with-job.html"><a href="a-short-psychological-example-satisfaction-with-job.html#taking-uncertainty-quantification-a-step-further"><i class="fa fa-check"></i><b>2.5</b> Taking uncertainty quantification a step further</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="concluding-remarks-and-future-plans-for-the-full-book.html"><a href="concluding-remarks-and-future-plans-for-the-full-book.html"><i class="fa fa-check"></i><b>3</b> Concluding remarks and future plans for the full book</a></li>
+<li class="chapter" data-level="4" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><i class="fa fa-check"></i><b>4</b> When the normal distribution is inappropriate (generalised linear models)</a><ul>
+<li class="chapter" data-level="4.1" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#poisson"><i class="fa fa-check"></i><b>4.1</b> Poisson</a></li>
+<li class="chapter" data-level="4.2" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#negative-binomial"><i class="fa fa-check"></i><b>4.2</b> Negative binomial</a></li>
+<li class="chapter" data-level="4.3" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#gamma"><i class="fa fa-check"></i><b>4.3</b> Gamma</a></li>
+<li class="chapter" data-level="4.4" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#beta"><i class="fa fa-check"></i><b>4.4</b> Beta</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><i class="fa fa-check"></i><b>5</b> A structured Bayesian workflow for program evaluation and management consulting</a><ul>
+<li class="chapter" data-level="5.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#use-qualitative-project-components-to-develop-priors"><i class="fa fa-check"></i><b>5.1</b> 1. Use qualitative project components to develop priors</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#how-to-elicit-priors-from-interviews-of-qualitative-reading"><i class="fa fa-check"></i><b>5.1.1</b> How to elicit priors from interviews of qualitative reading</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#specify-appropriately-uncertain-priors-for-your-context-despite-purported-stakeholder-certainty"><i class="fa fa-check"></i><b>5.2</b> 2. Specify appropriately uncertain priors for your context, despite purported stakeholder certainty</a></li>
+<li class="chapter" data-level="5.3" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#think-generatively-about-the-underlying-statistical-process-of-interest"><i class="fa fa-check"></i><b>5.3</b> 3. Think generatively about the underlying statistical process of interest</a></li>
+<li class="chapter" data-level="5.4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#test-competing-models-using-loo-cv-and-k-fold-cv"><i class="fa fa-check"></i><b>5.4</b> 4. Test competing models using LOO-CV and K-Fold-CV</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#leave-one-out-cross-validation"><i class="fa fa-check"></i><b>5.4.1</b> Leave-one-out cross-validation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>5.4.2</b> K-Fold cross-validation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#emphasise-credible-intervals-over-point-estimates-in-outputs-and-graphics"><i class="fa fa-check"></i><b>5.5</b> 5. Emphasise credible intervals over point estimates in outputs and graphics</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#credible-intervals-versus-confidence-intervals"><i class="fa fa-check"></i><b>5.5.1</b> Credible intervals versus confidence intervals</a></li>
+<li class="chapter" data-level="5.5.2" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#uncertainty-visualisation-example-1-bayesian-posterior-distributions"><i class="fa fa-check"></i><b>5.5.2</b> Uncertainty Visualisation Example 1: Bayesian posterior distributions</a></li>
+<li class="chapter" data-level="5.5.3" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#uncertainty-visualisation-example-2-frequentist-logistic-regression"><i class="fa fa-check"></i><b>5.5.3</b> Uncertainty Visualisation Example 2: Frequentist logistic regression</a></li>
+<li class="chapter" data-level="5.5.4" data-path="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html"><a href="a-structured-bayesian-workflow-for-program-evaluation-and-management-consulting.html#other-useful-uncertainty-visualisation-resources"><i class="fa fa-check"></i><b>5.5.4</b> Other useful uncertainty visualisation resources</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/hendersontrent/bayes-for-consulting" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="a-short-psychological-example-satisfaction-with-job" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> A short psychological example: Satisfaction with job</h1>
+<p>In this example, we are going to synthetically construct a basic research question that is somewhat related to psychology, and explore a generative approach to reasoning about it. The research premise is:</p>
+<p><strong>Premise: We are interested in understanding what proportion of working adults are satisfied with their jobs.</strong></p>
+<p>This overall premise is somewhat similar to the type of topic that a psychology university student might examine for an Honours thesis or other small research project for a course they might take.</p>
+<div id="plotting-our-best-guess-at-the-process" class="section level2">
+<h2><span class="header-section-number">2.1</span> Plotting our best guess at the process</h2>
+<p>We often cannot sample an entire population or know the <em>true</em> actual population parameters. This is entirely the point of <a href="https://en.wikipedia.org/wiki/Statistical_inference">statistical inference</a>. However, more often than not, there is a plethora of research available that we often trawl through when constructing literature reviews and new research questions. How can we more effectively put this to use? We can use this existing information to construct a <em>prior</em> understanding of what we think is going on <em>before</em> we observe any data.</p>
+<p>Let’s say previous research suggests that the true proportion is somewhere around 0.7, but we aren’t entirely certain. We can use a probability density function to model this best guess with some relative uncertainty around it. In practice, this means the areas of highest probability density (i.e. occurring) will be 0.7 and the immediate proportions around it, while proportions further away from 0.7 will have lower probability density. When your outcome measure of interest is a proportion, a <a href="https://en.wikipedia.org/wiki/Beta_distribution"><code>beta distribution</code></a> is the distribution you should use to model this. We’ll also take this opportunity to load all the packages we need for the entire book.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-2"></a><span class="kw">library</span>(tibble)</span>
+<span id="cb1-3"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-3"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb1-4"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-4"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-5"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-6"></a><span class="kw">library</span>(scales)</span>
+<span id="cb1-7"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-7"></a><span class="kw">library</span>(brms)</span>
+<span id="cb1-8"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-8"></a><span class="kw">library</span>(bayesplot)</span>
+<span id="cb1-9"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-9"></a><span class="kw">library</span>(loo)</span>
+<span id="cb1-10"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-10"></a><span class="kw">library</span>(haven)</span>
+<span id="cb1-11"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-11"></a><span class="kw">library</span>(janitor)</span>
+<span id="cb1-12"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-12"></a></span>
+<span id="cb1-13"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-13"></a><span class="co"># A colour palette for consistent plotting</span></span>
+<span id="cb1-14"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-14"></a></span>
+<span id="cb1-15"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-15"></a>my_palette &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1. Prior&quot;</span> =<span class="st"> &quot;#003f5c&quot;</span>,</span>
+<span id="cb1-16"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-16"></a>                <span class="st">&quot;2. Random Sample of Adults (Likelihood)&quot;</span> =<span class="st"> &quot;#ffa600&quot;</span>,</span>
+<span id="cb1-17"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-17"></a>                <span class="st">&quot;3. Unstandardised Posterior&quot;</span> =<span class="st"> &quot;#bc5090&quot;</span>,</span>
+<span id="cb1-18"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-18"></a>                <span class="st">&quot;4. Standardised Posterior&quot;</span> =<span class="st"> &quot;#ff6361&quot;</span>)</span>
+<span id="cb1-19"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-19"></a></span>
+<span id="cb1-20"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-20"></a><span class="co"># Simulate data</span></span>
+<span id="cb1-21"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-21"></a></span>
+<span id="cb1-22"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-22"></a>x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">11</span>)</span>
+<span id="cb1-23"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-23"></a></span>
+<span id="cb1-24"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-24"></a>pr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x,</span>
+<span id="cb1-25"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-25"></a>                 <span class="dt">y =</span> <span class="kw">dbeta</span>(x, <span class="dt">shape1 =</span> <span class="fl">6.5</span>, <span class="dt">shape2 =</span> <span class="fl">3.5</span>),</span>
+<span id="cb1-26"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-26"></a>                 <span class="dt">category =</span> <span class="st">&quot;1. Prior&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb1-27"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-27"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y =</span> y <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(y))</span>
+<span id="cb1-28"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-28"></a></span>
+<span id="cb1-29"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-29"></a><span class="co"># Plot it</span></span>
+<span id="cb1-30"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-30"></a></span>
+<span id="cb1-31"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-31"></a>pr <span class="op">%&gt;%</span></span>
+<span id="cb1-32"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-32"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">colour =</span> category)) <span class="op">+</span></span>
+<span id="cb1-33"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-33"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb1-34"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-34"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Our prior&quot;</span>,</span>
+<span id="cb1-35"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-35"></a>       <span class="dt">x =</span> <span class="st">&quot;Possible Values of Actual Proportion&quot;</span>,</span>
+<span id="cb1-36"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-36"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
+<span id="cb1-37"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-37"></a>       <span class="dt">colour =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb1-38"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-38"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb1-39"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-39"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> my_palette) <span class="op">+</span></span>
+<span id="cb1-40"><a href="a-short-psychological-example-satisfaction-with-job.html#cb1-40"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="01-thinking_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>The y values in this graph represent <a href="https://en.wikipedia.org/wiki/Probability_density_function">probability densities</a>. If we take any area between two x values on this graph, we then have the <em>probability</em> that a value lies within. Probability densities by themselves are not probabilities, but they help us understand where most of the data points lie in the underlying distribution (higher probability density = higher concentration of data points).</p>
+<p>I’ll leave the true purpose of this initial prior understanding until after we discuss the more familiar <em>likelihood</em> - or as we now know it - the probability distribution that best describes the data we have seen based on an estimated mean and standard deviation.</p>
+</div>
+<div id="plotting-a-random-sample-of-actual-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> Plotting a random sample of actual data</h2>
+<p>Now let’s say we sampled 10 adults students and observed whether they were satisfied with their job or not and 5 said they were. We can then calculate the probability of this occurring.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-1"></a><span class="co"># The observed data</span></span>
+<span id="cb2-2"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-2"></a></span>
+<span id="cb2-3"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-3"></a>lh &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span></span>
+<span id="cb2-4"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">dbinom</span>(<span class="dt">x =</span> x, <span class="dt">prob =</span> <span class="fl">0.5</span>, <span class="dt">size =</span> <span class="dv">10</span>),</span>
+<span id="cb2-5"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-5"></a>         <span class="dt">category =</span> <span class="st">&quot;2. Random Sample of Adults (Likelihood)&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">x =</span> x <span class="op">/</span><span class="st"> </span><span class="kw">max</span>(x))</span>
+<span id="cb2-7"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-7"></a></span>
+<span id="cb2-8"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-8"></a><span class="co"># Plot against our prior</span></span>
+<span id="cb2-9"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-9"></a></span>
+<span id="cb2-10"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-10"></a>pr <span class="op">%&gt;%</span></span>
+<span id="cb2-11"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-11"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">colour =</span> category)) <span class="op">+</span></span>
+<span id="cb2-12"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-12"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb2-13"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-13"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> lh, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb2-14"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-14"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Our prior and a random sample of students&quot;</span>,</span>
+<span id="cb2-15"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-15"></a>       <span class="dt">x =</span> <span class="st">&quot;Possible Values of Actual Proportion&quot;</span>,</span>
+<span id="cb2-16"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-16"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
+<span id="cb2-17"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-17"></a>       <span class="dt">colour =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb2-18"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-18"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb2-19"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-19"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> my_palette) <span class="op">+</span></span>
+<span id="cb2-20"><a href="a-short-psychological-example-satisfaction-with-job.html#cb2-20"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="01-thinking_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process" class="section level2">
+<h2><span class="header-section-number">2.3</span> Combining our best guess and the observed random sample of data for an informed estimate of the population process</h2>
+<p>Consistent with <a href="https://en.wikipedia.org/wiki/Probability_theory">probability theory</a>, we can multiple two probabilities (to account for both) to get their <a href="https://en.wikipedia.org/wiki/Joint_probability_distribution">joint probability</a>. This means we can multiply our prior by the likelihood to return something known as the <a href="https://en.wikipedia.org/wiki/Posterior_probability"><em>posterior</em></a>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-1"></a><span class="co"># Multiply prior and likelihood to get the &#39;posterior&#39;</span></span>
+<span id="cb3-2"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-2"></a></span>
+<span id="cb3-3"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-3"></a>posterior &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x,</span>
+<span id="cb3-4"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-4"></a>                        <span class="dt">y =</span> pr<span class="op">$</span>y<span class="op">*</span>lh<span class="op">$</span>y,</span>
+<span id="cb3-5"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-5"></a>                        <span class="dt">category =</span> <span class="st">&quot;3. Unstandardised Posterior&quot;</span>)</span>
+<span id="cb3-6"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-6"></a></span>
+<span id="cb3-7"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-7"></a><span class="co"># Plot against our prior and the likelihood</span></span>
+<span id="cb3-8"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-8"></a></span>
+<span id="cb3-9"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-9"></a>pr <span class="op">%&gt;%</span></span>
+<span id="cb3-10"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">colour =</span> category)) <span class="op">+</span></span>
+<span id="cb3-11"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-11"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb3-12"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-12"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> lh, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb3-13"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-13"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">data =</span> posterior, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb3-14"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-14"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Our prior, random sample, and posterior update&quot;</span>,</span>
+<span id="cb3-15"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-15"></a>       <span class="dt">x =</span> <span class="st">&quot;Possible Values of Actual Proportion&quot;</span>,</span>
+<span id="cb3-16"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-16"></a>       <span class="dt">y =</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
+<span id="cb3-17"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-17"></a>       <span class="dt">colour =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb3-18"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-18"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb3-19"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-19"></a><span class="st">  </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> my_palette) <span class="op">+</span></span>
+<span id="cb3-20"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-20"></a><span class="st">  </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)) <span class="op">+</span></span>
+<span id="cb3-21"><a href="a-short-psychological-example-satisfaction-with-job.html#cb3-21"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="01-thinking_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>As you can see, the posterior appears to resemble a sort of “trade-off” between our prior and the observed data. Building on this, so far we have looked at a sample of ten random adults. You might begin to wonder what the posterior distribution looks like if our sample size was larger but 50% still said they were satisfied with their job. Does our initial guess/intuition (the <em>prior</em>) become less important as we understand more of the actual population? Let’s take a look - we are going to write a function that we can reuse that only takes a sample size as an input.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-1"></a>do_bayes &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">n =</span> <span class="dv">100</span>){</span>
+<span id="cb4-2"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-2"></a>  </span>
+<span id="cb4-3"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-3"></a>  <span class="co"># Prior</span></span>
+<span id="cb4-4"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-4"></a>  </span>
+<span id="cb4-5"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-5"></a>  x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb4-6"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-6"></a>  </span>
+<span id="cb4-7"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-7"></a>  pr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x,</span>
+<span id="cb4-8"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-8"></a>                     <span class="dt">y =</span> <span class="kw">dbeta</span>(x, <span class="dt">shape1 =</span> <span class="fl">6.5</span>, <span class="dt">shape2 =</span> <span class="fl">3.5</span>),</span>
+<span id="cb4-9"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-9"></a>                     <span class="dt">category =</span> <span class="st">&quot;1. Prior&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-10"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-10"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">y =</span> y <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(y))</span>
+<span id="cb4-11"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-11"></a>  </span>
+<span id="cb4-12"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-12"></a>  <span class="co"># Likelihood</span></span>
+<span id="cb4-13"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-13"></a>  </span>
+<span id="cb4-14"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-14"></a>  lh &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span>n) <span class="op">%&gt;%</span></span>
+<span id="cb4-15"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-15"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">dbinom</span>(<span class="dt">x =</span> x, <span class="dt">prob =</span> <span class="fl">0.5</span>, <span class="dt">size =</span> n),</span>
+<span id="cb4-16"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-16"></a>           <span class="dt">category =</span> <span class="st">&quot;2. Random Sample of Adults (Likelihood)&quot;</span>,</span>
+<span id="cb4-17"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-17"></a>           <span class="dt">x =</span> x <span class="op">/</span><span class="st"> </span>n)</span>
+<span id="cb4-18"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-18"></a>  </span>
+<span id="cb4-19"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-19"></a>  <span class="co"># Posterior</span></span>
+<span id="cb4-20"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-20"></a>  </span>
+<span id="cb4-21"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-21"></a>  posterior &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x,</span>
+<span id="cb4-22"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-22"></a>                          <span class="dt">y =</span> pr<span class="op">$</span>y<span class="op">*</span>lh<span class="op">$</span>y,</span>
+<span id="cb4-23"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-23"></a>                          <span class="dt">category =</span> <span class="st">&quot;3. Unstandardised Posterior&quot;</span>)</span>
+<span id="cb4-24"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-24"></a>  </span>
+<span id="cb4-25"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-25"></a>  st_post &lt;-<span class="st"> </span>posterior <span class="op">%&gt;%</span></span>
+<span id="cb4-26"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-26"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">y =</span> y <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(y),</span>
+<span id="cb4-27"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-27"></a>           <span class="dt">category =</span> <span class="st">&quot;4. Standardised Posterior&quot;</span>)</span>
+<span id="cb4-28"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-28"></a>  </span>
+<span id="cb4-29"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-29"></a>  p &lt;-<span class="st"> </span>pr <span class="op">%&gt;%</span></span>
+<span id="cb4-30"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-30"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">colour =</span> category)) <span class="op">+</span></span>
+<span id="cb4-31"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-31"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb4-32"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-32"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> lh, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb4-33"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-33"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> posterior, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb4-34"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-34"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">data =</span> st_post, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></span>
+<span id="cb4-35"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-35"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Our prior, random sample, and posterior update&quot;</span>,</span>
+<span id="cb4-36"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-36"></a>         <span class="dt">subtitle =</span> <span class="kw">paste0</span>(<span class="st">&quot;N = &quot;</span>, n),</span>
+<span id="cb4-37"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-37"></a>         <span class="dt">x =</span> <span class="st">&quot;Possible Values of Actual Proportion&quot;</span>,</span>
+<span id="cb4-38"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-38"></a>         <span class="dt">y =</span> <span class="st">&quot;Probability Density&quot;</span>,</span>
+<span id="cb4-39"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-39"></a>         <span class="dt">colour =</span> <span class="ot">NULL</span>) <span class="op">+</span></span>
+<span id="cb4-40"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-40"></a><span class="st">    </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb4-41"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-41"></a><span class="st">    </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> my_palette) <span class="op">+</span></span>
+<span id="cb4-42"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-42"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">colour =</span> <span class="kw">guide_legend</span>(<span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)) <span class="op">+</span></span>
+<span id="cb4-43"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-43"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb4-44"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-44"></a>  </span>
+<span id="cb4-45"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-45"></a>  <span class="kw">return</span>(p)</span>
+<span id="cb4-46"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-46"></a>}</span>
+<span id="cb4-47"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-47"></a></span>
+<span id="cb4-48"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-48"></a>p_<span class="dv">100</span> &lt;-<span class="st"> </span><span class="kw">do_bayes</span>(<span class="dt">n =</span> <span class="dv">100</span>)</span>
+<span id="cb4-49"><a href="a-short-psychological-example-satisfaction-with-job.html#cb4-49"></a><span class="kw">print</span>(p_<span class="dv">100</span>)</span></code></pre></div>
+<p><img src="01-thinking_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>As you can see, as sample size increases, the posterior distribution is driven more and more by the likelihood - meaning the prior (especially a ‘wide’ or <em>‘uninformative’</em> prior) becomes increasingly less important. Moreover, if we specify a very narrow/specifc prior (commonly referred to as <em>‘informative’</em>), this diminishing importance relative to the likelihood is not as strong as what we see here. In theory, when sample sizes are very large, the results produced by this line of thinking get closer and closer to those produced by the maximum-likelihood-driven analysis we are familiar with. More simply, as sample sizes increase, the posterior approximates the likelihood. Very interesting! Let’s try <code>N = 1,000</code> just to really drive this point home:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="a-short-psychological-example-satisfaction-with-job.html#cb5-1"></a>p_<span class="dv">1000</span> &lt;-<span class="st"> </span><span class="kw">do_bayes</span>(<span class="dt">n =</span> <span class="dv">1000</span>)</span>
+<span id="cb5-2"><a href="a-short-psychological-example-satisfaction-with-job.html#cb5-2"></a><span class="kw">print</span>(p_<span class="dv">1000</span>)</span></code></pre></div>
+<p><img src="01-thinking_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Evidently, at a sample size of <code>N = 1000</code> the likelihood and the standardised posterior basically fully overlap (which is why the likelihood visually appears mostly ‘hidden’). The other important thing that might stand out to you at this point is the inclusion of something called the <em>Standardised Posterior</em> which is calculated as the unstandardised posterior probability densities divided by the sum of all the probability densities. This ensures our posterior probabilities are <em>actual</em> probabilities (meaning they sum to 1). Let’s explore this in more detail.</p>
+</div>
+<div id="the-essence-of-bayesian-statistics" class="section level2">
+<h2><span class="header-section-number">2.4</span> The essence of Bayesian statistics</h2>
+<p>The steps we have just gone through are actually in fact the core of <a href="https://en.wikipedia.org/wiki/Bayesian_statistics">Bayesian statistics</a>. These three components, the prior, likelihood, and posterior (the combination of the two), are the essential parts of Bayes’ theorem. In order to turn this posterior into an actual probability distribution, we need to standardise our new estimates across all the probabilities of the data occurring, so we divide the prior-likelihood product by this <em>marginal likelihood</em> (see the “Standardised Posterior” in the previous example). This leaves us with the full Bayes’ theorem:</p>
+<p><span class="math inline">\(P(\theta \mid D) = \frac{P(D \mid \theta) \cdot P(\theta)}{P(D)}\)</span></p>
+<p>Where:</p>
+<p><span class="math inline">\(P(\theta \mid D)\)</span> - this is called the <strong>posterior</strong> (probability of model parameters given the data)</p>
+<p><span class="math inline">\(P(D \mid \theta)\)</span> - this is called the <strong>likelihood</strong> (probability of the data given model parameters)</p>
+<p><span class="math inline">\(P(\theta)\)</span> - this is called the <strong>prior</strong> (our expressed understanding of the probability of model parameters)</p>
+<p><span class="math inline">\(P(D)\)</span> - this is called the <strong>marginal likelihood</strong> (probability of the data)</p>
+<p>Let’s pause for a moment. We started out discussing regular old normal distributions and statistics, and ended up in the Bayesian world. How did this happen? Essentially, the likelihood is the nexus between both realms of statistics. In the frequentist world, the likelihood is the estimated function of interest, whereas in the Bayesian world, it forms one piece of the puzzle, allowing us to combine is with any prior knowledge and/or uncertainty we have. Very neat.</p>
+</div>
+<div id="taking-uncertainty-quantification-a-step-further" class="section level2">
+<h2><span class="header-section-number">2.5</span> Taking uncertainty quantification a step further</h2>
+<p>Since we are in the mindset of generative thinking, we are not restricted to the single value guesses at the true population distribution mean and standard deviation. In Bayesian statistics, we can specify a distribution of potential values for each of the mean and standard deviation. Practically, if we assessed prior research and found that estimates of the mean varied by some amount, we might assume that the true value of the mean lies somewhere within a probability distribution of the values we found in prior research. We could calculate a mean and standard deviation of this collection of prior means, and feed that uncertainty in the model, giving us more flexibility over how we conceptualise the underlying statistical process and quantify our inherent uncertainty. We can of course do the same for the standard deviation. This can be thought of as <em>placing distributions on the parameters of distributions.</em></p>
+<p><img src="https://i.imgflip.com/4yva3g.jpg" /></p>
+<p>Using the power of modern statistical computing libraries such as <a href="https://mc-stan.org/"><code>Stan</code></a> that allow us to use algorithms such as <a href="https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo">Hamiltonian Monte Carlo</a>, we can simulate the underlying statistical process and obtain probabilistic estimates of the parameters of interest, conditioned on the data we have observed. This means we are not restricted by the limiting assumptions of frequentist statistics which largely denotes that parameter values are fixed and the data is random. An explanation of Hamiltonian Monte Carlo is beyond the scope of this chapter, but for an intuitive and informal high-level understanding of what Hamiltonian Monte Carlo is doing, check out <a href="https://twitter.com/betanalpha/status/1351749413564256256">this Twitter thread</a> by Michael Betancourt or his <a href="https://arxiv.org/pdf/1701.02434.pdf">excellent paper</a> on the topic.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="thinking-generatively.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="concluding-remarks-and-future-plans-for-the-full-book.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

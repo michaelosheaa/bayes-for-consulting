@@ -1,18 +1,6 @@
 # When the normal distribution is inappropriate (generalised linear models)
 
-```{r, message = FALSE, warning = FALSE, echo = FALSE}
-library(dplyr)
-library(tibble)
-library(magrittr)
-library(tidyr)
-library(ggplot2)
-library(scales)
-library(brms)
-library(bayesplot)
-library(loo)
-library(haven)
-library(janitor)
-```
+
 
 While the normal distribution is very useful and even pops up in nature more often than one might expect, it is rarely the case that our variable of interest takes on this form specifically. Most of the time, are response variable probably is better measured by another probability density function. We are going to take a look at some main ones here.
 
@@ -28,7 +16,8 @@ $P(X=x) = \frac{\lambda^{x}e^{-\lambda}}{x!}$
 
 We can sample from a Poisson distribution in R quite easily:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 pois_data <- data.frame(x = seq(from = 1, to = 30, by = 1)) %>%
   mutate(y = dpois(x, lambda = 3)) # Probability densities for the generated x variable values
 
@@ -43,6 +32,8 @@ pois_data %>%
   theme(panel.grid.minor = element_blank())
 ```
 
+<img src="02-glm_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+
 ## Negative binomial
 
 While Poisson distributions are immensely useful, it is not always the case that the mean of our data is equivalent to the variance. Luckily, there is a non-negative integer probability distribution for when this is the case - the [negative binomial](https://en.wikipedia.org/wiki/Negative_binomial_distribution). The negative binomial *generalises* the Poisson distribution to when mean and variance are not the same. This makes them useful for many problems in the social sciences. We can simulate a negative binomial distribution and have a look at it. The negative binomial distribution can be written as:
@@ -51,7 +42,8 @@ $f(k;r,p) = \frac{\Gamma(r+k)}{k!\Gamma(r)}p^{k}(1-p)^{r}$
   
 We can sample from a negative binomial distribution in R:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 nb_data <- data.frame(x = seq(from = 1, to = 30, by = 1)) %>%
   mutate(y = dnbinom(x, size = 2, prob = 0.2)) # Probability densities for the generated x variable values
 
@@ -65,6 +57,8 @@ nb_data %>%
   scale_x_continuous(limits = c(1,30)) +
   theme(panel.grid.minor = element_blank())
 ```
+
+<img src="02-glm_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 ## Gamma
 
@@ -80,7 +74,8 @@ $f(x;k,\theta) = \frac{x^{k-1}e^{-\frac{x}{\theta}}}{\theta^{k}\Gamma(k)}$
   
 We can sample from a gamma distribution in R:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 gamma_data <- data.frame(x = seq(from = 0, to = 10, by = 0.05)) %>%
   mutate(y = dgamma(x, shape = 1, scale = 2)) # Probability densities for the generated x variable values
 
@@ -95,6 +90,8 @@ gamma_data %>%
   theme(panel.grid.minor = element_blank())
 ```
 
+<img src="02-glm_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+
 ## Beta
 
 [Beta distributions](https://en.wikipedia.org/wiki/Beta_distribution) are unique and useful - they are specifically designed for response variables that range between 0 and 1. For example, your response variable might be the proportion of people in a given region who have a postgraduate degree. The normal distribution (and by extension standard linear regression) is inappropriate here, as extrapolation would clearly lead to values that exceed 0 in the negative direction, and 1 in the positive direction. This would limit any predictive capability outside the immediate sample. The negative binomial distribution can be written as:
@@ -103,7 +100,8 @@ $f(x;\alpha,\beta) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{\frac{\Gamma(\alpha)\Gam
   
 We can sample from a beta distribution in R:
 
-```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
+
+```r
 beta_data <- data.frame(x = seq(from = 0, to = 1, by = 0.05)) %>%
   mutate(y = dbeta(x,1,5)) # Probability densities for the generated x variable values
 
@@ -117,3 +115,5 @@ beta_data %>%
   scale_x_continuous(limits = c(0,1)) +
   theme(panel.grid.minor = element_blank())
 ```
+
+<img src="02-glm_files/figure-html/unnamed-chunk-5-1.png" width="672" />
