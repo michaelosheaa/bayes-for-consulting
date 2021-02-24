@@ -1,6 +1,5 @@
 --- 
-title: An introduction to Bayes, generative thinking, and a structured Bayesian workflow
-  for management consulting
+title: An introduction to generative thinking and probabilistic methods for consulting
 author: "Trent Henderson"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -11,7 +10,7 @@ github-repo: hendersontrent/bayes-for-consulting
 
 # Preface
 
-Welcome! Thank you for checking out *An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting* or as I like to call it - *Trent's ramblings on things he has observed in his not-many-years as a professional data scientist*. Before we get into the exciting details, I just wanted to give you a little bit of context about the book and about me, as my goal is to have the contents resonate with everyone, but especially those working in a (management) consulting or program evaluation setting.
+Welcome! Thank you for checking out *An introduction to generative thinking and probabilistic methods for consulting* or as I like to call it - *Trent's ramblings on things he has observed in his not-many-years as a professional data scientist*. Before we get into the exciting details, I just wanted to give you a little bit of context about the book and about me, as my goal is to have the contents resonate with everyone, but especially those working in a (management) consulting or program evaluation setting.
 
 The book initially started out being called *Statistical shit they don't teach you in psychology (but probably should)*, but I thought this to be a bit too clickbait-y for my liking. Plus, the content began to expand beyond just the topics I believe are missing in university education into more applied problems and situations I encountered at work. This led me to reconsider the framing and purpose of the entire thing.
 

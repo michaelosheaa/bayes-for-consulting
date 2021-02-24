@@ -5,7 +5,7 @@ bookdown::gitbook:
     toc:
       collapse: subsection
       before: |
-        <li><a href="./">An introduction to Bayes, generative thinking, and a structured Bayesian workflow for management consulting</a></li>
+        <li><a href="./">An introduction to generative thinking and probabilistic methods for consulting</a></li>
       after: |
         <li><a href="https://github.com/hendersontrent/bayes-for-consulting" target="blank">Published with bookdown</a></li>
 bookdown::pdf_book:
