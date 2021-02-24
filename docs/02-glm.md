@@ -14,7 +14,7 @@ Instead, while the formula remains the same, we turn to a type of distribution t
 
 $P(X=x) = \frac{\lambda^{x}e^{-\lambda}}{x!}$
 
-We can sample from a Poisson distribution in R quite easily:
+We can sample from a Poisson distribution in R (using a random lambda of `3`) quite easily:
 
 
 ```r
@@ -94,7 +94,7 @@ gamma_data %>%
 
 ## Beta
 
-[Beta distributions](https://en.wikipedia.org/wiki/Beta_distribution) are unique and useful - they are specifically designed for response variables that range between 0 and 1. For example, your response variable might be the proportion of people in a given region who have a postgraduate degree. The normal distribution (and by extension standard linear regression) is inappropriate here, as extrapolation would clearly lead to values that exceed 0 in the negative direction, and 1 in the positive direction. This would limit any predictive capability outside the immediate sample. The negative binomial distribution can be written as:
+[Beta distributions](https://en.wikipedia.org/wiki/Beta_distribution) are unique and useful - they are specifically designed for response variables that range between 0 and 1. For example, your response variable might be the proportion of people in a given region who have a postgraduate degree. The normal distribution (and by extension standard linear regression) is inappropriate here, as extrapolation would clearly lead to values that exceed 0 in the negative direction, and 1 in the positive direction. This would limit any predictive capability outside the immediate sample. The beta distribution can be written as:
 
 $f(x;\alpha,\beta) = \frac{x^{\alpha-1}(1-x)^{\beta-1}}{\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)}}$
   
