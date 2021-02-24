@@ -87,7 +87,7 @@ Now let's take a look at the second quote.
 
 #### Quote 2: We have many different service providers who deliver the program
 
-X
+*Coming soon...*
 
 ## 2. Specify appropriately uncertain priors for your context, despite purported stakeholder certainty
 
@@ -104,7 +104,7 @@ We covered much of the detail in this component in an earlier chapter, but will 
 
 ## 4. Test competing models using LOO-CV and K-Fold-CV
 
-[Cross-validation (CV)](https://en.wikipedia.org/wiki/Cross-validation_(statistics)) is a powerful out-of-sample-based tool for model selection and evaluation of model performance ([Vehtari, Gelman, & Gabry, 2016](https://link.springer.com/article/10.1007/s11222-016-9696-4)). At a high level, it essentially works by removing a select number of samples X many times and . See [this article](https://avehtari.github.io/modelselection/roaches.html) by Vehtari (2017) for a great explanation and applied example of Bayesian model selection using cross-validation techniques. There are two main CV techniques used for evaluating Bayesian models:
+[Cross-validation (CV)](https://en.wikipedia.org/wiki/Cross-validation_(statistics)) is a powerful out-of-sample-based tool for model selection and evaluation of model performance ([Vehtari, Gelman, & Gabry, 2016](https://link.springer.com/article/10.1007/s11222-016-9696-4)). At a high level, it essentially works by removing a select number of samples `k` many times and measuring predictive accuracy against this held-out test set of data. See [this article](https://avehtari.github.io/modelselection/roaches.html) by Vehtari (2017) for a great explanation and applied example of Bayesian model selection using cross-validation techniques. There are two main CV techniques used for evaluating Bayesian models:
 
 1. Leave-one-out cross-validation
 2. K-Fold cross-validation
