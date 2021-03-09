@@ -1,7 +1,7 @@
 --- 
 title: An introduction to generative thinking and probabilistic methods for consulting
 author: "Trent Henderson"
-date: "2021-02-24"
+date: "2021-03-09"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes

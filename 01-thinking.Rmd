@@ -9,7 +9,7 @@ Two much more important questions arise out of this scenario:
 
 These questions require a different type of thinking that could be called *generative* as it considers the core of all statistics - the actual data generation process. But this line of thinking is not taught in psychology at university, the focus is so much on the tools themselves in `SPSS` or other software and how the outputs are likely to be, rather than the underlying statistical mechanics of our areas of interest. As I was writing this chapter, a [tweet](https://twitter.com/betanalpha/status/1361778324519997440) by the fantastic [Michael Betancourt](https://betanalpha.github.io/) summarised the issue well. Essentially, instead of worrying about how the effects will look in your model outputs, you should consider modelling the process that generated the data you observed/sampled. You can use the mathematics of [likelihood](https://en.wikipedia.org/wiki/Likelihood_function) functions to work through it.
 
-There are several reasons that may underpin this lack of sound statistical thinking, but I'll just address a core one here - the absence of mathematical rigour. I did not see the formula for the normal distribution (or another other, obviously) in my physchology classes. So students blindly fit models that assume normality for various aspects of their design without understanding how they actually work. Let's take standard maximum likelihood linear regression for example. 
+There are several reasons that may underpin this lack of sound statistical thinking, but I'll just address a core one here - the absence of mathematical rigour. I did not see the formula for the normal distribution (or another other, obviously) in my psychology classes. So students blindly fit models that assume normality for various aspects of their design without understanding how they actually work. Let's take standard maximum likelihood linear regression for example. 
 
 Most students would be able to recite the obvious: instead of fitting ordinary least-squares, maximum likelihood *maximises* the likelihood function. But most students would not then be able to tell you what the likelihood function does. What it does is find the parameters of your probability density function (in this case, the normal distribution) that maximise the overall likelihood (more specifically, the negative log-likelihood, but more on this later) of observing your data. For the normal distribution, these parameters are just the `mean` and `standard deviation`. This [frequentist](https://en.wikipedia.org/wiki/Frequentist_inference) interpretation means that we assume the parameters themselves are fixed values that we are trying to estimate through our model, while the data itself is random. Further, if we collect enough data (i.e. run the study many more times, therefore sampling closer and closer to the whole population), we will eventually approximate the *true* parameters values that are fixed.
 
@@ -21,7 +21,33 @@ The full equation for normal distribution is:
 
 $f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^{2}}$
 
-The math may look intense if you haven't come across many equations in your studies, but all we are doing in practice is inserting values for `x` (the observed data), $\mu$ (the mean), and $\sigma$ (the standard deviation). Simple, right?
+The math may look intense if you haven't come across many equations in your studies, but all we are doing in practice is inserting values for `x` (the observed data), $\mu$ (the mean), and $\sigma$ (the standard deviation). Simple, right? Visually, it looks like this:
+
+```{r, message = FALSE, warning = FALSE, echo = FALSE, fig.keep = TRUE}
+library(dplyr)
+library(tibble)
+library(magrittr)
+library(ggplot2)
+library(scales)
+
+# Simulate data
+
+x <- seq(-6, 6, length.out = 100)
+
+pr <- data.frame(x = x,
+                 y = dnorm(x, mean = 0, sd = 1)) %>%
+  mutate(y = y / sum(y))
+
+# Plot it
+
+pr %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_line(size = 1.25, colour = "#003f5c") +
+  labs(title = "Normal distribution",
+       x = "X",
+       y = "Probability Density") +
+  theme_bw()
+```
 
 With this in mind, let's quickly revisit what maximum likelihood is doing. It is finding the values for the mean and standard deviation that across all your observed datapoints, maximise the overall output value of the function. Luckily, modern software such as `R`, `Python`, and `Julia` (among many others) use nonlinear optimisers to find these values for us very quickly. It would take a long time to test many different values for both and determine the optimal ones. Now that we understand how the backbone of almost all models in frequentist statistics work, we can start to link back to this notion of *thinking generatively*. If you truly believe the process generating your observed data is Gaussian, then two questions should come to mind:
 
