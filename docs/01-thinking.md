@@ -5,13 +5,13 @@ The normal distribution is the only type of distribution I learnt in my formal p
 Two much more important questions arise out of this scenario:
 
 1. Is it possible that these 'outliers' are actually part of the population you are drawing from? (Given you sampled them, chances of this being yes are probably very high, meaning you have strong theoretical grounds to **not** remove them - it's more likely your model is inappropriate)
-2. Are you sure that the underlying process generating your observed data is *actually* [Gaussian](https://en.wikipedia.org/wiki/Gaussian_function?) What evidence do you have that suggests this explicitly?
+2. Are you sure that the underlying process generating your observed data is *actually* [Gaussian]? (https://en.wikipedia.org/wiki/Gaussian_function?) What evidence do you have that suggests this explicitly?
 
-These questions require a different type of thinking that could be called *generative* as it considers the core of all statistics - the actual data generation process. But this line of thinking is not taught in psychology at university, the focus is so much on the tools themselves in `SPSS` or other software and how the outputs are likely to be, rather than the underlying statistical mechanics of our areas of interest. As I was writing this chapter, a [tweet](https://twitter.com/betanalpha/status/1361778324519997440) by the fantastic [Michael Betancourt](https://betanalpha.github.io/) summarised the issue well. Essentially, the issue boils down to stopping worrying about how the effects will look in your model outputs and starting to think about trying to model the process that generated the data you observed/sampled from and using the mathematics of [likelihood](https://en.wikipedia.org/wiki/Likelihood_function) functions to work through it.
+These questions require a different type of thinking that could be called *generative* as it considers the core of all statistics - the actual data generation process. But this line of thinking is not taught in psychology at university, the focus is so much on the tools themselves in `SPSS` or other software and how the outputs are likely to be, rather than the underlying statistical mechanics of our areas of interest. As I was writing this chapter, a [tweet](https://twitter.com/betanalpha/status/1361778324519997440) by the fantastic [Michael Betancourt](https://betanalpha.github.io/) summarised the issue well. Essentially, instead of worrying about how the effects will look in your model outputs, you should consider modelling the process that generated the data you observed/sampled. You can use the mathematics of [likelihood](https://en.wikipedia.org/wiki/Likelihood_function) functions to work through it.
 
-There are several reasons that may underpin the lack of education in this type of thinking, but I'll just address a core one here - the absence of mathematical rigour. I did not see the formula for the normal distribution (or another other, obviously) in my actual classes. This means students blindly go about fitting models that assume normality for various aspects of their design without understanding how they actually work. Let's take standard maximum likelihood linear regression for example. 
+There are several reasons that may underpin this lack of sound statistical thinking, but I'll just address a core one here - the absence of mathematical rigour. I did not see the formula for the normal distribution (or another other, obviously) in my psychology classes. So students blindly fit models that assume normality for various aspects of their design without understanding how they actually work. Let's take standard maximum likelihood linear regression for example. 
 
-Most students would be able to recite the obvious, that instead of fitting ordinary least-squares, maximum likelihood instead *maximises* the likelihood function. But most students would not then be able to tell you what the likelihood function does. What it does is find the parameters of your probability density function (in this case, the normal distribution) that maximise the overall likelihood (more specifically, the negative log-likelihood, but more on this later) of observing your data. For the normal distribution, these parameters are just the `mean` and `standard deviation`. This [frequentist](https://en.wikipedia.org/wiki/Frequentist_inference) interpretation means that we assume the parameters themselves are fixed values that we are trying to estimate through our model, while the data itself is random. Further, if we collect enough data (i.e. run the study many more times, therefore sampling closer and closer to the whole population), we will eventually approximate the *true* parameters values that are fixed.
+Most students would be able to recite the obvious: instead of fitting ordinary least-squares, maximum likelihood *maximises* the likelihood function. But most students would not then be able to tell you what the likelihood function does. What it does is find the parameters of your probability density function (in this case, the normal distribution) that maximise the overall likelihood (more specifically, the negative log-likelihood, but more on this later) of observing your data. For the normal distribution, these parameters are just the `mean` and `standard deviation`. This [frequentist](https://en.wikipedia.org/wiki/Frequentist_inference) interpretation means that we assume the parameters themselves are fixed values that we are trying to estimate through our model, while the data itself is random. Further, if we collect enough data (i.e. run the study many more times, therefore sampling closer and closer to the whole population), we will eventually approximate the *true* parameters values that are fixed.
 
 Since the normal distribution is fully specified by its mean ($\mu$) and standard deviation ($\sigma^{2}$), we can write this as shorthand:
 
@@ -21,9 +21,11 @@ The full equation for normal distribution is:
 
 $f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^{2}}$
 
-While the math may look intense if you haven't come across many equations in your studies, it's important to realise that all we are doing in practice is insert values for `x` (the observed data), $\mu$ (the mean), and $\sigma$ (the standard deviation). Simple, right?
+The math may look intense if you haven't come across many equations in your studies, but all we are doing in practice is inserting values for `x` (the observed data), $\mu$ (the mean), and $\sigma$ (the standard deviation). Simple, right? Visually, it looks like this:
 
-With this in mind, let's quickly revisit what maximum likelihood is doing. It is finding the values for the mean and standard deviation that across all your observed datapoints, maximise the overall output value of the function. Luckily, modern software such as `R`, `Python`, and `Julia` (among many others) use very fast nonlinear optimisers to find these values for us very quickly. It would take a long time to test many different values for both and determine the optimal ones. Now that we understand how the backbone of almost all models in frequentist statistics work, we can start to link back to this notion of *thinking generatively*. If you truly believe the process generating your observed data is Gaussian, then two questions should come to mind:
+<img src="01-thinking_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+
+With this in mind, let's quickly revisit what maximum likelihood is doing. It is finding the values for the mean and standard deviation that across all your observed datapoints, maximise the overall output value of the function. Luckily, modern software such as `R`, `Python`, and `Julia` (among many others) use nonlinear optimisers to find these values for us very quickly. It would take a long time to test many different values for both and determine the optimal ones. Now that we understand how the backbone of almost all models in frequentist statistics work, we can start to link back to this notion of *thinking generatively*. If you truly believe the process generating your observed data is Gaussian, then two questions should come to mind:
 
 1. What do I believe the true mean value might be? How certain am I of this?
 2. What do I believe the true standard deviation value might be? How certain am I of this?
@@ -32,7 +34,7 @@ We are now at the crux of statistical thinking! You are now reasoning deeply abo
 
 Let's take a look at an example to visualise what's going on. We are going to be using the `R` programming language. If you are unfamiliar with `R`, it is an open-source programming language that is very powerful and flexible, and is the primary language used in the statistical and econometric sciences, among many others. `R` has a lot of fantastic and intuitive data wrangling, statistical analysis, and data visualisation toolboxes that are far more extensive, reproducible, and free compared to the software that dominates psychology, such as `SPSS` and `MPlus` and paid add-ons such as `AMOS`. 
 
-If you come from an `SPSS` (or other) background and have never coded before, fear not! I firmly believe anyone can become a programmer and now is definitely the time to start. As this resource is not an "introduction to programming" text, there is some assumed knowledge. If anything does not make sense, please search the piece of code or topic (especially on [Stack Overflow](https://stackoverflow.com)) and try and figure it out. This is how most of us solve problems on real projects and simply knowing what or how to search for information and solutions is a critical skill in any programmer or statistician's toolkit. If you cannot find the answer, though, feel free to send me a message (details at the bottom of this chapter).
+If you come from an `SPSS` (or other) background and have never coded before, fear not! I firmly believe anyone can become a programmer and now is definitely the time to start. As this resource is not an "introduction to programming" text, there is some assumed knowledge. If anything does not make sense, please search the piece of code or topic (especially on [Stack Overflow](https://stackoverflow.com)) and try and figure it out. This is how most of us solve problems on real projects and simply knowing what or how to search for information and solutions is a critical skill in any programmer or statistician's toolkit. Another excellent resource is [R for Data Science by Hadley Wickham](https://r4ds.had.co.nz/). If you cannot find the answer, though, feel free to send me a message (details at the bottom of this chapter).
 
 ## Installing R and RStudio
 
@@ -96,7 +98,7 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
-<img src="01-thinking_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="01-thinking_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 The y values in this graph represent [probability densities](https://en.wikipedia.org/wiki/Probability_density_function). If we take any area between two x values on this graph, we then have the *probability* that a value lies within. Probability densities by themselves are not probabilities, but they help us understand where most of the data points lie in the underlying distribution (higher probability density = higher concentration of data points).
 
@@ -130,7 +132,7 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
-<img src="01-thinking_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="01-thinking_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 ## Combining our best guess and the observed random sample of data for an informed estimate of the population process
 
@@ -161,7 +163,7 @@ pr %>%
   theme(legend.position = "bottom")
 ```
 
-<img src="01-thinking_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<img src="01-thinking_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 As you can see, the posterior appears to resemble a sort of "trade-off" between our prior and the observed data. Building on this, so far we have looked at a sample of ten random adults. You might begin to wonder what the posterior distribution looks like if our sample size was larger but 50% still said they were satisfied with their job. Does our initial guess/intuition (the *prior*) become less important as we understand more of the actual population? Let's take a look - we are going to write a function that we can reuse that only takes a sample size as an input.
 
@@ -218,7 +220,7 @@ p_100 <- do_bayes(n = 100)
 print(p_100)
 ```
 
-<img src="01-thinking_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<img src="01-thinking_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 As you can see, as sample size increases, the posterior distribution is driven more and more by the likelihood - meaning the prior (especially a 'wide' or *'uninformative'* prior) becomes increasingly less important. Moreover, if we specify a very narrow/specifc prior (commonly referred to as *'informative'*), this diminishing importance relative to the likelihood is not as strong as what we see here. In theory, when sample sizes are very large, the results produced by this line of thinking get closer and closer to those produced by the maximum-likelihood-driven analysis we are familiar with. More simply, as sample sizes increase, the posterior approximates the likelihood. Very interesting! Let's try `N = 1,000` just to really drive this point home:
 
@@ -228,7 +230,7 @@ p_1000 <- do_bayes(n = 1000)
 print(p_1000)
 ```
 
-<img src="01-thinking_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<img src="01-thinking_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 Evidently, at a sample size of `N = 1000` the likelihood and the standardised posterior basically fully overlap (which is why the likelihood visually appears mostly 'hidden'). The other important thing that might stand out to you at this point is the inclusion of something called the *Standardised Posterior* which is calculated as the unstandardised posterior probability densities divided by the sum of all the probability densities. This ensures our posterior probabilities are *actual* probabilities (meaning they sum to 1). Let's explore this in more detail.
 
