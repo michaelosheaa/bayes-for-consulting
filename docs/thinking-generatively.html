@@ -24,7 +24,7 @@
 <meta name="author" content="Trent Henderson" />
 
 
-<meta name="date" content="2021-03-09" />
+<meta name="date" content="2021-03-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,12 +137,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
 <li class="chapter" data-level="2" data-path="thinking-generatively.html"><a href="thinking-generatively.html"><i class="fa fa-check"></i><b>2</b> Thinking generatively</a><ul>
 <li class="chapter" data-level="2.1" data-path="thinking-generatively.html"><a href="thinking-generatively.html#installing-r-and-rstudio"><i class="fa fa-check"></i><b>2.1</b> Installing R and RStudio</a></li>
-<li class="chapter" data-level="2.2" data-path="thinking-generatively.html"><a href="thinking-generatively.html#a-short-psychological-example-adult-satisfaction-with-their-job"><i class="fa fa-check"></i><b>2.2</b> A short psychological example: Adult satisfaction with their job</a></li>
-<li class="chapter" data-level="2.3" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-our-best-guess-at-the-process"><i class="fa fa-check"></i><b>2.3</b> Plotting our best guess at the process</a></li>
-<li class="chapter" data-level="2.4" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-a-random-sample-of-actual-data"><i class="fa fa-check"></i><b>2.4</b> Plotting a random sample of actual data</a></li>
-<li class="chapter" data-level="2.5" data-path="thinking-generatively.html"><a href="thinking-generatively.html#combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process"><i class="fa fa-check"></i><b>2.5</b> Combining our best guess and the observed random sample of data for an informed estimate of the population process</a></li>
-<li class="chapter" data-level="2.6" data-path="thinking-generatively.html"><a href="thinking-generatively.html#the-essence-of-bayesian-statistics"><i class="fa fa-check"></i><b>2.6</b> The essence of Bayesian statistics</a></li>
-<li class="chapter" data-level="2.7" data-path="thinking-generatively.html"><a href="thinking-generatively.html#taking-uncertainty-quantification-a-step-further"><i class="fa fa-check"></i><b>2.7</b> Taking uncertainty quantification a step further</a></li>
+<li class="chapter" data-level="2.2" data-path="thinking-generatively.html"><a href="thinking-generatively.html#a-short-psychological-example-adult-satisfaction-with-their-job"><i class="fa fa-check"></i><b>2.2</b> A short psychological example: Adult satisfaction with their job</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-our-best-guess-at-the-process"><i class="fa fa-check"></i><b>2.2.1</b> Plotting our best guess at the process</a></li>
+<li class="chapter" data-level="2.2.2" data-path="thinking-generatively.html"><a href="thinking-generatively.html#plotting-a-random-sample-of-actual-data"><i class="fa fa-check"></i><b>2.2.2</b> Plotting a random sample of actual data</a></li>
+<li class="chapter" data-level="2.2.3" data-path="thinking-generatively.html"><a href="thinking-generatively.html#combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process"><i class="fa fa-check"></i><b>2.2.3</b> Combining our best guess and the observed random sample of data for an informed estimate of the population process</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="thinking-generatively.html"><a href="thinking-generatively.html#the-essence-of-bayesian-statistics"><i class="fa fa-check"></i><b>2.3</b> The essence of Bayesian statistics</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="thinking-generatively.html"><a href="thinking-generatively.html#taking-uncertainty-quantification-a-step-further"><i class="fa fa-check"></i><b>2.3.1</b> Taking uncertainty quantification a step further</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><i class="fa fa-check"></i><b>3</b> When the normal distribution is inappropriate (generalised linear models)</a><ul>
 <li class="chapter" data-level="3.1" data-path="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html"><a href="when-the-normal-distribution-is-inappropriate-generalised-linear-models.html#poisson"><i class="fa fa-check"></i><b>3.1</b> Poisson</a></li>
@@ -221,9 +223,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this example, we are going to synthetically construct a basic research question that is somewhat related to psychology, and explore a generative approach to reasoning about it. The research premise is:</p>
 <p><strong>Premise: We are interested in understanding what proportion of working adults are satisfied with their jobs.</strong></p>
 <p>This overall premise is somewhat similar to the type of topic that a psychology university student might examine for an Honours thesis or other small research project for a course they might take.</p>
-</div>
-<div id="plotting-our-best-guess-at-the-process" class="section level2">
-<h2><span class="header-section-number">2.3</span> Plotting our best guess at the process</h2>
+<div id="plotting-our-best-guess-at-the-process" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Plotting our best guess at the process</h3>
 <p>We often cannot sample an entire population or know the <em>true</em> actual population parameters. This is entirely the point of <a href="https://en.wikipedia.org/wiki/Statistical_inference">statistical inference</a>. However, more often than not, there is a plethora of research available that we often trawl through when constructing literature reviews and new research questions. How can we more effectively put this to use? We can use this existing information to construct a <em>prior</em> understanding of what we think is going on <em>before</em> we observe any data.</p>
 <p>Let’s say previous research suggests that the true proportion is somewhere around 0.7, but we aren’t entirely certain. We can use a probability density function to model this best guess with some relative uncertainty around it. In practice, this means the areas of highest probability density (i.e. occurring) will be 0.7 and the immediate proportions around it, while proportions further away from 0.7 will have lower probability density. When your outcome measure of interest is a proportion, a <a href="https://en.wikipedia.org/wiki/Beta_distribution"><code>beta distribution</code></a> is the distribution you should use to model this. We’ll also take this opportunity to load all the packages we need for the entire book.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="thinking-generatively.html#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
@@ -270,8 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The y values in this graph represent <a href="https://en.wikipedia.org/wiki/Probability_density_function">probability densities</a>. If we take any area between two x values on this graph, we then have the <em>probability</em> that a value lies within. Probability densities by themselves are not probabilities, but they help us understand where most of the data points lie in the underlying distribution (higher probability density = higher concentration of data points).</p>
 <p>I’ll leave the true purpose of this initial prior understanding until after we discuss the more familiar <em>likelihood</em> - or as we now know it - the probability distribution that best describes the data we have seen based on an estimated mean and standard deviation.</p>
 </div>
-<div id="plotting-a-random-sample-of-actual-data" class="section level2">
-<h2><span class="header-section-number">2.4</span> Plotting a random sample of actual data</h2>
+<div id="plotting-a-random-sample-of-actual-data" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Plotting a random sample of actual data</h3>
 <p>Now let’s say we sampled 10 adults students and observed whether they were satisfied with their job or not and 5 said they were. We can then calculate the probability of this occurring.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="thinking-generatively.html#cb2-1"></a><span class="co"># The observed data</span></span>
 <span id="cb2-2"><a href="thinking-generatively.html#cb2-2"></a></span>
@@ -295,8 +296,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-20"><a href="thinking-generatively.html#cb2-20"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <p><img src="01-thinking_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
-<div id="combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process" class="section level2">
-<h2><span class="header-section-number">2.5</span> Combining our best guess and the observed random sample of data for an informed estimate of the population process</h2>
+<div id="combining-our-best-guess-and-the-observed-random-sample-of-data-for-an-informed-estimate-of-the-population-process" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Combining our best guess and the observed random sample of data for an informed estimate of the population process</h3>
 <p>Consistent with <a href="https://en.wikipedia.org/wiki/Probability_theory">probability theory</a>, we can multiple two probabilities (to account for both) to get their <a href="https://en.wikipedia.org/wiki/Joint_probability_distribution">joint probability</a>. This means we can multiply our prior by the likelihood to return something known as the <a href="https://en.wikipedia.org/wiki/Posterior_probability"><em>posterior</em></a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="thinking-generatively.html#cb3-1"></a><span class="co"># Multiply prior and likelihood to get the &#39;posterior&#39;</span></span>
 <span id="cb3-2"><a href="thinking-generatively.html#cb3-2"></a></span>
@@ -377,8 +378,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="01-thinking_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Evidently, at a sample size of <code>N = 1000</code> the likelihood and the standardised posterior basically fully overlap (which is why the likelihood visually appears mostly ‘hidden’). The other important thing that might stand out to you at this point is the inclusion of something called the <em>Standardised Posterior</em> which is calculated as the unstandardised posterior probability densities divided by the sum of all the probability densities. This ensures our posterior probabilities are <em>actual</em> probabilities (meaning they sum to 1). Let’s explore this in more detail.</p>
 </div>
+</div>
 <div id="the-essence-of-bayesian-statistics" class="section level2">
-<h2><span class="header-section-number">2.6</span> The essence of Bayesian statistics</h2>
+<h2><span class="header-section-number">2.3</span> The essence of Bayesian statistics</h2>
 <p>The steps we have just gone through are actually in fact the core of <a href="https://en.wikipedia.org/wiki/Bayesian_statistics">Bayesian statistics</a>. These three components, the prior, likelihood, and posterior (the combination of the two), are the essential parts of Bayes’ theorem. In order to turn this posterior into an actual probability distribution, we need to standardise our new estimates across all the probabilities of the data occurring, so we divide the prior-likelihood product by this <em>marginal likelihood</em> (see the “Standardised Posterior” in the previous example). This leaves us with the full Bayes’ theorem:</p>
 <p><span class="math inline">\(P(\theta \mid D) = \frac{P(D \mid \theta) \cdot P(\theta)}{P(D)}\)</span></p>
 <p>Where:</p>
@@ -387,13 +389,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(P(\theta)\)</span> - this is called the <strong>prior</strong> (our expressed understanding of the probability of model parameters)</p>
 <p><span class="math inline">\(P(D)\)</span> - this is called the <strong>marginal likelihood</strong> (probability of the data)</p>
 <p>Let’s pause for a moment. We started out discussing regular old normal distributions and statistics, and ended up in the Bayesian world. How did this happen? Essentially, the likelihood is the nexus between both realms of statistics. In the frequentist world, the likelihood is the estimated function of interest, whereas in the Bayesian world, it forms one piece of the puzzle, allowing us to combine is with any prior knowledge and/or uncertainty we have. Very neat.</p>
-</div>
-<div id="taking-uncertainty-quantification-a-step-further" class="section level2">
-<h2><span class="header-section-number">2.7</span> Taking uncertainty quantification a step further</h2>
+<div id="taking-uncertainty-quantification-a-step-further" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Taking uncertainty quantification a step further</h3>
 <p>Since we are in the mindset of generative thinking, we are not restricted to the single value guesses at the true population distribution mean and standard deviation. In Bayesian statistics, we can specify a distribution of potential values for each of the mean and standard deviation. Practically, if we assessed prior research and found that estimates of the mean varied by some amount, we might assume that the true value of the mean lies somewhere within a probability distribution of the values we found in prior research. We could calculate a mean and standard deviation of this collection of prior means, and feed that uncertainty in the model, giving us more flexibility over how we conceptualise the underlying statistical process and quantify our inherent uncertainty. We can of course do the same for the standard deviation. This can be thought of as <em>placing distributions on the parameters of distributions.</em></p>
 <p><img src="https://i.imgflip.com/4yva3g.jpg" /></p>
 <p>Using the power of modern statistical computing libraries such as <a href="https://mc-stan.org/"><code>Stan</code></a> that allow us to use algorithms such as <a href="https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo">Hamiltonian Monte Carlo</a>, we can simulate the underlying statistical process and obtain probabilistic estimates of the parameters of interest, conditioned on the data we have observed. This means we are not restricted by the limiting assumptions of frequentist statistics which largely denotes that parameter values are fixed and the data is random. An explanation of Hamiltonian Monte Carlo is beyond the scope of this chapter, but for an intuitive and informal high-level understanding of what Hamiltonian Monte Carlo is doing, check out <a href="https://twitter.com/betanalpha/status/1351749413564256256">this Twitter thread</a> by Michael Betancourt or his <a href="https://arxiv.org/pdf/1701.02434.pdf">excellent paper</a> on the topic.</p>
 
+</div>
 </div>
 </div>
             </section>

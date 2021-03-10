@@ -48,7 +48,7 @@ In this example, we are going to synthetically construct a basic research questi
 
 This overall premise is somewhat similar to the type of topic that a psychology university student might examine for an Honours thesis or other small research project for a course they might take.
 
-## Plotting our best guess at the process
+### Plotting our best guess at the process
 
 We often cannot sample an entire population or know the *true* actual population parameters. This is entirely the point of [statistical inference](https://en.wikipedia.org/wiki/Statistical_inference). However, more often than not, there is a plethora of research available that we often trawl through when constructing literature reviews and new research questions. How can we more effectively put this to use? We can use this existing information to construct a *prior* understanding of what we think is going on *before* we observe any data.
 
@@ -104,7 +104,7 @@ The y values in this graph represent [probability densities](https://en.wikipedi
 
 I'll leave the true purpose of this initial prior understanding until after we discuss the more familiar *likelihood* - or as we now know it - the probability distribution that best describes the data we have seen based on an estimated mean and standard deviation.
 
-## Plotting a random sample of actual data
+### Plotting a random sample of actual data
 
 Now let's say we sampled 10 adults students and observed whether they were satisfied with their job or not and 5 said they were. We can then calculate the probability of this occurring.
 
@@ -134,7 +134,7 @@ pr %>%
 
 <img src="01-thinking_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-## Combining our best guess and the observed random sample of data for an informed estimate of the population process
+### Combining our best guess and the observed random sample of data for an informed estimate of the population process
 
 Consistent with [probability theory](https://en.wikipedia.org/wiki/Probability_theory), we can multiple two probabilities (to account for both) to get their [joint probability](https://en.wikipedia.org/wiki/Joint_probability_distribution). This means we can multiply our prior by the likelihood to return something known as the [*posterior*](https://en.wikipedia.org/wiki/Posterior_probability).
 
@@ -252,7 +252,7 @@ $P(D)$ - this is called the **marginal likelihood** (probability of the data)
 
 Let's pause for a moment. We started out discussing regular old normal distributions and statistics, and ended up in the Bayesian world. How did this happen? Essentially, the likelihood is the nexus between both realms of statistics. In the frequentist world, the likelihood is the estimated function of interest, whereas in the Bayesian world, it forms one piece of the puzzle, allowing us to combine is with any prior knowledge and/or uncertainty we have. Very neat.
 
-## Taking uncertainty quantification a step further
+### Taking uncertainty quantification a step further
 
 Since we are in the mindset of generative thinking, we are not restricted to the single value guesses at the true population distribution mean and standard deviation. In Bayesian statistics, we can specify a distribution of potential values for each of the mean and standard deviation. Practically, if we assessed prior research and found that estimates of the mean varied by some amount, we might assume that the true value of the mean lies somewhere within a probability distribution of the values we found in prior research. We could calculate a mean and standard deviation of this collection of prior means, and feed that uncertainty in the model, giving us more flexibility over how we conceptualise the underlying statistical process and quantify our inherent uncertainty. We can of course do the same for the standard deviation. This can be thought of as *placing distributions on the parameters of distributions.*
 
