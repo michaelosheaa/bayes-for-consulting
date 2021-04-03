@@ -127,7 +127,7 @@ I'll leave the true purpose of this initial prior understanding until after we d
 
 ### Plotting a random sample of actual data
 
-Now let's say we sampled 10 adults students and observed whether they were satisfied with their job or not and 5 said they were. We can then calculate the probability of this occurring.
+Now let's say we sampled 10 adult students and observed whether they were satisfied with their job or not, and 5 said they were. We can then calculate the probability of this occurring.
 
 ```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
 # The observed data
@@ -154,7 +154,7 @@ pr %>%
 
 ### Combining our best guess and the observed random sample of data for an informed estimate of the population process
 
-Consistent with [probability theory](https://en.wikipedia.org/wiki/Probability_theory), we can multiple two probabilities (to account for both) to get their [joint probability](https://en.wikipedia.org/wiki/Joint_probability_distribution). This means we can multiply our prior by the likelihood to return something known as the [*posterior*](https://en.wikipedia.org/wiki/Posterior_probability).
+Consistent with [probability theory](https://en.wikipedia.org/wiki/Probability_theory), we can multiply two probabilities (to account for both) to get their [joint probability](https://en.wikipedia.org/wiki/Joint_probability_distribution). This means we can multiply our prior by the likelihood to return something known as the [*posterior*](https://en.wikipedia.org/wiki/Posterior_probability).
 
 ```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
 # Multiply prior and likelihood to get the 'posterior'
@@ -234,7 +234,7 @@ p_100 <- do_bayes(n = 100)
 print(p_100)
 ```
 
-As you can see, as sample size increases, the posterior distribution is driven more and more by the likelihood - meaning the prior (especially a 'wide' or *'uninformative'* prior) becomes increasingly less important. Moreover, if we specify a very narrow/specifc prior (commonly referred to as *'informative'*), this diminishing importance relative to the likelihood is not as strong as what we see here. In theory, when sample sizes are very large, the results produced by this line of thinking get closer and closer to those produced by the maximum-likelihood-driven analysis we are familiar with. More simply, as sample sizes increase, the posterior approximates the likelihood. Very interesting! Let's try `N = 1,000` just to really drive this point home:
+As you can see, as sample size increases, the posterior distribution is driven more and more by the likelihood - meaning the prior (especially a 'wide' or *'uninformative'* prior) becomes increasingly less important. Moreover, if we specify a very narrow/specific prior (commonly referred to as *'informative'*), this diminishing importance relative to the likelihood is not as strong as what we see here. In theory, when sample sizes are very large, the results produced by this line of thinking get closer and closer to those produced by the maximum-likelihood-driven analysis we are familiar with. More simply, as sample sizes increase, the posterior approximates the likelihood. Very interesting! Let's try `N = 1,000` just to really drive this point home:
 
 ```{r, message = FALSE, warning = FALSE, fig.keep = TRUE}
 p_1000 <- do_bayes(n = 1000)
@@ -245,7 +245,7 @@ Evidently, at a sample size of `N = 1000` the likelihood and the standardised po
 
 ## The essence of Bayesian statistics
 
-The steps we have just gone through are actually in fact the core of [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_statistics). These three components, the prior, likelihood, and posterior (the combination of the two), are the essential parts of Bayes' theorem. In order to turn this posterior into an actual probability distribution, we need to standardise our new estimates across all the probabilities of the data occurring, so we divide the prior-likelihood product by this *marginal likelihood* (see the "Standardised Posterior" in the previous example). This leaves us with the full Bayes' theorem:
+The steps we have just gone through are the core of [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_statistics). These three components, the prior, likelihood, and posterior (the combination of the two), are the essential parts of Bayes' theorem. In order to turn this posterior into an actual probability distribution, we need to standardise our new estimates across all the probabilities of the data occurring, so we divide the prior-likelihood product by this *marginal likelihood* (see the "Standardised Posterior" in the previous example). This leaves us with the full Bayes' theorem:
 
 $P(\theta \mid D) = \frac{P(D \mid \theta) \cdot P(\theta)}{P(D)}$
 
@@ -259,7 +259,7 @@ $P(\theta)$ - this is called the **prior** (our expressed understanding of the p
 
 $P(D)$ - this is called the **marginal likelihood** (probability of the data)
 
-Let's pause for a moment. We started out discussing regular old normal distributions and statistics, and ended up in the Bayesian world. How did this happen? Essentially, the likelihood is the nexus between both realms of statistics. In the frequentist world, the likelihood is the estimated function of interest, whereas in the Bayesian world, it forms one piece of the puzzle, allowing us to combine is with any prior knowledge and/or uncertainty we have. Very neat.
+Let's pause for a moment. We started out discussing regular old normal distributions and statistics, and ended up in the Bayesian world. How did this happen? Essentially, the likelihood is the nexus between both realms of statistics. In the frequentist world, the likelihood is the estimated function of interest, whereas in the Bayesian world, it forms one piece of the puzzle, allowing us to combine it with any prior knowledge and/or uncertainty we have. Very neat.
 
 ### Taking uncertainty quantification a step further
 
@@ -267,4 +267,4 @@ Since we are in the mindset of generative thinking, we are not restricted to the
 
 ![](https://i.imgflip.com/4yva3g.jpg)
 
-Using the power of modern statistical computing libraries such as [`Stan`](https://mc-stan.org/) that allow us to use algorithms such as [Hamiltonian Monte Carlo](https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo), we can simulate the underlying statistical process and obtain probabilistic estimates of the parameters of interest, conditioned on the data we have observed. This means we are not restricted by the limiting assumptions of frequentist statistics which largely denotes that parameter values are fixed and the data is random. An explanation of Hamiltonian Monte Carlo is beyond the scope of this chapter, but for an intuitive and informal high-level understanding of what Hamiltonian Monte Carlo is doing, check out [this Twitter thread](https://twitter.com/betanalpha/status/1351749413564256256) by Michael Betancourt or his [excellent paper](https://arxiv.org/pdf/1701.02434.pdf) on the topic.
+Using the power of modern statistical computing libraries such as [`Stan`](https://mc-stan.org/) that allow us to use algorithms such as [Hamiltonian Monte Carlo](https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo), we can simulate the underlying statistical process and obtain probabilistic estimates of the parameters of interest, conditioned on the data we have observed. This means we are not restricted by the limiting assumptions of frequentist statistics, which largely denotes that parameter values are fixed and the data is random. An explanation of Hamiltonian Monte Carlo is beyond the scope of this chapter, but for an intuitive and informal high-level understanding of what Hamiltonian Monte Carlo is doing, check out [this Twitter thread](https://twitter.com/betanalpha/status/1351749413564256256) by Michael Betancourt or his [excellent paper](https://arxiv.org/pdf/1701.02434.pdf) on the topic.
